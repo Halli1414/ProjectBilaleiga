@@ -7,7 +7,7 @@ class CustomerRepository:
         self.__customer = []
 
     def add_customer(self, customer):
-        with open("/data/customer.txt","a+") as customer_file:
+        with open("/Data/customer.txt","a+") as customer_file:
             name = customer.get_name()
             id = customer.get_id()
             phone = customer.get_phone()
@@ -17,7 +17,7 @@ class CustomerRepository:
     
     def get_customer(self):
         if self.__customer == []:
-            with open("./data/customer.txt", "r") as customer_file:
+            with open("./Data/customer.txt", "r") as customer_file:
                 for line in customer_file.readlines():
                     name, id, phone, address, email = line.split(",")
                     new_customer = Customer(name, id, phone, address, email)
