@@ -1,13 +1,29 @@
+from ServiceLayer.CustomerService import CustomerService
+from ServiceLayer.OrderService import OrderService
+#from ServiceLayer.VehicleSevice import VehicleSevice
 #this is the ui class that handles all of the menus
+
 class MainMenu:
-    def __init__(self, vehicle_service, customer_service, order_service):
-        self.__vehicle_service = vehicle_service
-        self.__customer_service = customer_service
-        self.__order_service = order_service
+    def __init__(self):
+        #self.__vehicle_service = VehicleService()
+        self.__customer_service = CustomerService()
+        self.__order_service = OrderService()
+        self.__choice =""
 
-
-    def getInput(self):
-        return input
+    def start(self):
+        while self.__choice.lower() != "q":
+            self.printMainMenu()
+            self.__choice = self.getInput()
+            
+    def getInput(self, prompt=""):
+        return input(prompt)
 
     def printScreen(self):
+        self.printMainMenu()
        # return Menu????
+
+    def printMainMenu(self):
+        print("Project Bilaleiga")
+        print("1.Orders")
+        print("2.Customer")
+        print("3.Vehicles")
