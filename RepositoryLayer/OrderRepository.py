@@ -6,8 +6,8 @@ class OrderRepository(object):
     def __init__(self):
         self.__orders = []
 
-    def add_order(self, order):
-        with open("./data/orders.txt" "a+") as order_file:
+    def addOrder(self, order):
+        with open("./Data/orders.txt" "a+") as order_file:
             order_id = order.getID()
             customer = order.getCustomer()
             vehicle = order.getVehicle()
@@ -18,9 +18,9 @@ class OrderRepository(object):
                 order_id, customer, vehicle, order_start_date, order_end_date, payment
                 ))
 
-    def get_orders(self):
+    def getOrders(self):
         if self.__orders == []:
-            with open("./data/orders.txt", "r") as order_file:
+            with open("./Data/orders.txt", "r") as order_file:
                 for line in order_file.readlines():
                     order_id, customer, vehicle, order_start_date, order_end_date, payment = line.split(",")
                     new_order = Order(
