@@ -1,5 +1,5 @@
 # this is the CarRepository class
-from models.Vehicles import Vehicle
+from Models.Vehicles import Vehicle
 
 class VehicleRepository:
     def __init__(self):
