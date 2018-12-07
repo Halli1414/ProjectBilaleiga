@@ -19,6 +19,9 @@ class MainMenu:
                 
                 self.printOrderMenu()
                 self.__choice = self.getInput()
+                
+                if self.__choice == "1":
+                    pass
 
 
     def getInput(self, prompt=""):
