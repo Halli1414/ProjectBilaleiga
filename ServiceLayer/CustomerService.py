@@ -6,15 +6,15 @@ class CustomerService:
     def __init__(self):
         self.__customer_repo = CustomerRepository()
 
-    def addCustomer(self, customer):
-        if self.is_valid_customer(customer):
-            self.__customer_repo.add_customer(customer)
+    def AddCustomer(self, customer):
+        if self.IsValidCustomer(customer):
+            self.__customer_repo.AddCustomer(customer)
     
-    def isValidCustomer(self, customer):
+    def IsValidCustomer(self, customer):
         #Setja inn kóða
         return True
     
-    def getCustomer(self):
-        return self.__customer_repo.get_customer()
+    def GetCustomer(self):
+        return self.__customer_repo.GetCustomer()
     
     
