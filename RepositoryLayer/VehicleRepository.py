@@ -1,11 +1,11 @@
 # this is the CarRepository class
-from Models.Vehicles import Vehicle
+from Models.Vehicle import Vehicle
 
 class VehicleRepository:
     def __init__(self):
         self.__Vehicle = []
 
-    def add_Vehicle(self, Vehicle):
+    def addVehicle(self, Vehicle):
         with open("/Data/vehicle.txt","a+") as Vehicle_file:
             Manufacturer = Vehicle.get_Manufacturer()
             Model = Vehicle.get_Model()
