@@ -1,14 +1,19 @@
 class Order(object):
 
     def __init__(
-        self, id, customer, vehicle, order_start_date, order_end_date, payment
+        self, customer, vehicle, order_start_date, order_end_date, payment
         ):
-        self.__id = id
+        self.__id = self.getNewID()
         self.__customer = customer
         self.__vehicle = vehicle
         self.__order_start = order_start_date
         self.__order_end = order_end_date
         self.__payment = payment
+    current_order_id = 0
+
+    def getNewID(self):
+        Order.current_order_id += 1
+        return Order.current_order_id
 
     def getID(self):
         return self.__id
