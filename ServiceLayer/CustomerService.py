@@ -16,5 +16,8 @@ class CustomerService:
     
     def GetCustomer(self):
         return self.__customer_repo.GetCustomer()
-    
+
+    def FindCustomer(self, ):
+
+        return self
     

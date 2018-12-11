@@ -42,8 +42,9 @@ class CustomerUI:
     def FindCustomer(self):
         customer_id = input("ID: ")
 
-        self.__CustomerService.FindCustomer(customer_id)
-
+        customer = self.__CustomerService.FindCustomer(customer_id)
+        print(customer)
+        
     def AllCustomer(self):
         customers = self.__CustomerService.GetCustomer()
   
