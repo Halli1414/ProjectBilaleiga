@@ -1,7 +1,7 @@
 class Customer():
     def __init__(self, name, id, phone, address, email):
         self.__name = name
-        self.__id = id
+        self.__id = customer_id
         self.__phone = phone
         self.__address = address
         self.__email = email
@@ -18,7 +18,7 @@ class Customer():
     def getAddress(self):
         return self.__address
 
-    def getEmail(self):
+    def get_Email(self):
         return self.__email
 
     def setName(self, new_name):
@@ -32,3 +32,7 @@ class Customer():
     
     def setEmail(self, new_email):
         self.__email = new_email
+
+    def __str__(self):
+        print(self.__name)
+        
