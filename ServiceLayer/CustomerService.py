@@ -22,6 +22,6 @@ class CustomerService:
 
         customers = self.__customer_repo.GetCustomer()
         for customer in customers:
-            if customer.getID() == customer_id
+            if customer.getID() == customer_id:
                 return customer
     
