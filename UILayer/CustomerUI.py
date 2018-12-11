@@ -8,11 +8,19 @@ class CustomerUI:
         self.__choice = ""
 
     def start(self):
-        while coice != "q":
-            self._PrintMenu
-            self._NewCustomer
-            self._FindCustomer
-            self._AllCustomer
+        while self.__choice != "q":
+            self.PrintMenu()
+            self.__choice = input("")
+            if self.__choice == "1":
+                self.NewCustomer()
+            elif self.__choice == "2": 
+                self.FindCustomer()
+            elif self.__choice == "3":
+                self.AllCustomer()
+            elif self.__choice == "4":
+                self.UpdateCustomer()
+            elif self.__choice == "5":
+                self.DeleteCustomer()
 
     def PrintMenu(self):
         print("1. New Customer ")
@@ -39,3 +47,12 @@ class CustomerUI:
     def AllCustomer(self):
         customers = self.__CustomerService.GetCustomer()
   
+    def UpdateCustomer(self):
+        name = input("Name: ")
+        customer_id = input("ID: ")
+        email = input("Email: ")
+        phone = input("Phone number: ")
+        address = input("Address: ")
+
+    def DeleteCustomer(self):
+        

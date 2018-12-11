@@ -24,3 +24,8 @@ class Vehicle:
         return self.__kilometers
     def setVehicleStatus(self):
         return self.__vehicleStatus
+    
+    def __str__(self):
+        return "Order ID: {} Manufacturer: {} Model: {} Color: {} Kilometers: {} VehicleStatus {}".format(
+            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicleStatus
+        )
