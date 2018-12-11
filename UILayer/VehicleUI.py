@@ -7,27 +7,34 @@ class VehicleUi:
         self.__vehicle_service = VehicleService()
 
 
-    def main(self):
-
-        action = ""
+    def printMenu(self):
         print("1.Find Vehicle")
         print("2.All Vehicles")
         print("3.All Available")
         print("4.All Unavailable")
-
-        action = input("Choose an option")
+        print("5.Add Vehicle")
+        
 
     def FindVehicles(self):
+        self.__vehicle_service.FindVehicles(search_term)
+
+    def allVehicles(self):
+        
+
+    def allAvailable(self):
+    
+
+    def allUnavailable(self):
+
+
+
+    def addVehicle(self):
         Vehicle_id = input("ID: ")
         Model = input("Model: ")
         Manufacturer = input("Manufacturer: ")
         Color = input("Color: ")
-
-        FindVehicles = Vehicles(Vehicle_id, Model, Manufacturer, Color)
-        
-
-
-
-
-
-
+        VehicleStatus = input("VehicleStatus: ")
+        Kilometers = input("Kilometers: ")
+        new_vehicle = Vehicle(
+            Vehicle_id, Model, Manufacturer, Color, VehicleStatus, Kilometers
+            )
