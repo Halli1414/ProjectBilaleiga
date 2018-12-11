@@ -1,6 +1,6 @@
 #This is the class that handles Order menues
 from ServiceLayer.OrderService import OrderService
-from Models.ORder import Order
+from Models.Order import Order
 
 
 class OrderUI(object):
@@ -26,7 +26,8 @@ class OrderUI(object):
         self.__order_service.addOrder(new_order)
 
     def findOrder(self, search_term):
-        self.__order_service.findOrder(search_term)
+        #self.__order_service.findOrder(search_term)
+        pass
 
 
     def getInput(self, prompt):
