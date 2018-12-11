@@ -9,20 +9,20 @@ class VehicleUI:
         self.__choice = ""
 
     def start(self):
-        while self.__choice != q:
+        while self.__choice != "q":
             self.printMenu()
             self.__choice = self.getInput().lower()
 
             if self.__choice == "1":
-                self.FindVehicle()
+                self.findVehicles()
             elif self.__choice == "2":
                 self.allVehicles()
             elif self.__choice == "3":
-                self.__allAvailable()
+                self.allAvailable()
             elif self.__choice == "4":
-                self.__allUnavailable()
+                self.allUnavailable()
             elif self.__choice == "5":
-                self.__addVehicle() 
+                self.addVehicle() 
 
     def printMenu(self):
         print("1.Find vehicle")
@@ -32,9 +32,10 @@ class VehicleUI:
         print("5.Add vehicle")
         
 
-    def findVehicles(self, search_term):
-        Vehicle_id = input("ID: ")
-        self.__vehicle_service.FindVehicles(search_term)
+    def findVehicles(self):
+        vehicle_id = input("ID: ")
+        vehicle = self.__vehicle_service.findVehicle(vehicle_id)
+        print("vehicle: ", vehicle)
 
     def allVehicles(self):
         self.__vehicle_service.getVehicle()
@@ -43,7 +44,7 @@ class VehicleUI:
         availableVehicles = self.__vehicle_service.allAvailable()
         for vehicle in availableVehicles:
             print(vehicle)
-            
+
     def allUnavailable(self):
         unavailableVehicles = self.__vehicle_service.allUnavailable()
         for vehicle in unavailableVehicles:
@@ -61,3 +62,6 @@ class VehicleUI:
         new_vehicle = Vehicle(
             Vehicle_id, Model, Manufacturer, Color, VehicleStatus, Kilometers
             )
+
+    def getInput(self):
+        return input()

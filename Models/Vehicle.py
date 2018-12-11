@@ -10,7 +10,7 @@ class Vehicle:
         self.__kilometers = kilometers
         self.__vehicleStatus = vehicleStatus
     
-    def getId(self):
+    def getID(self):
         return self.__id
     def getManufacturer(self):
         return self.__manufacturer

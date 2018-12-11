@@ -1,4 +1,4 @@
-# this is the CarRepository class
+# this is the VehicleRepository class
 from Models.Vehicle import Vehicle
 
 class VehicleRepository:
@@ -6,7 +6,7 @@ class VehicleRepository:
         self.__Vehicle = []
 
     def addVehicle(self, Vehicle):
-        with open("/Data/vehicle.txt","a+") as Vehicle_file:
+        with open("./Data/vehicles.txt","a+") as Vehicle_file:
             Manufacturer = Vehicle.get_Manufacturer()
             Model = Vehicle.get_Model()
             id = Vehicle.get_Id()
@@ -17,8 +17,8 @@ class VehicleRepository:
     
     def getVehicle(self):
         if self.__Vehicle == []:
-            with open("./Data/Vehicle.txt", "r") as Vehicle_file:
-                for line in Vehicle_file.readlines():
+            with open("./Data/vehicles.txt", "r") as vehicle_file:
+                for line in vehicle_file.readlines():
                     Manufacturer, Model, id, Color, VehicleStatus, Kilometers = line.split(",")
                     new_Vehicle = Vehicle(Manufacturer, Model, id, Color, VehicleStatus, Kilometers)
                     self.__Vehicle.append(new_Vehicle)
