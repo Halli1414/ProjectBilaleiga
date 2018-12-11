@@ -1,10 +1,18 @@
+#from UILayer.CustomerUI import CustomerUI
+from UILayer.OrderUI import OrderUI
+#from UILayer.VehicleUI import VehicleUI
+
 from ServiceLayer.CustomerService import CustomerService
 from ServiceLayer.OrderService import OrderService
 from ServiceLayer.VehicleService import VehicleService
+
 #this is the ui class that handles all of the menus
 
 class MainMenu:
     def __init__(self):
+        #self.__customer_ui = CustomerUI()
+        self.__order_ui = OrderUI()
+        #self.__vehicle_ui = VehicleUI()
         self.__vehicle_service = VehicleService()
         self.__customer_service = CustomerService()
         self.__order_service = OrderService()
@@ -19,46 +27,59 @@ class MainMenu:
                 self.__choice = self.getInput()
                 if self.__choice.lower() == "a":
                     #run new order function here.
+                    pass
                 elif self.__choice.lower() == "b":
                     #run find order function here.
-                    printFindOrderMenu()
+                    self.printFindOrderMenu()
                     self.__choice = self.getInput()
                     if self.__choice.lower() == "d":
                         #run update order function here.
+                        pass
                     if self.__choice.lower() == "e":
                         #run delete order function here.
+                        pass
                 elif self.__choice.lower() == "c":
                     #run all orders function here.
+                    self.__order_ui.printMenu()
+                    self.__choice = self.getInput()
             elif self.__choice == "2":
                 self.printCustomerMenu()
                 self.__choice = self.getInput()
                 if self.__choice.lower() == "a":
                     #run new customer function here.
+                    pass
                 elif self.__choice.lower() == "b":
                     #run find customer function here.
-                    printFindCustomerMenu()
+                    self.printFindCustomerMenu()
                     self.__choice = self.getInput()
                     if self.__choice.lower() == "d":
                         #run update customer function here.
+                        pass
                     elif self.__choice.lower() == "e":
                         #run delete customer function here.
+                        pass
                 elif self.__choice.lower() == "c":
                     #run all customers function here.
+                    pass
             elif self.__choice == "3":
                 self.printVehicleMenu()
                 self.__choice = self.getInput()
                 if self.__choice.lower() == "a":
                     #run new vehicle function here.
+                    pass
                 elif self.__choice.lower() == "b":
                     #run find vehicle function here.
-                    printFindVehicleMenu()
+                    self.printFindVehicleMenu()
                     self.__choice = self.getInput()
                     if self.__choice.lower() == "d":
                         #run update vehicle function here.
+                        pass
                     elif self.__choice.lower() == "e":
                         #run delete vehicle function here.
+                        pass
                 elif self.__choice.lower() == "c":
                     #run all vehicles function here.
+                    pass
 
     def getInput(self, prompt=""):
         return input(prompt)
@@ -76,34 +97,34 @@ class MainMenu:
         print("(3) Vehicles")
 
     def printOrderMenu(self):
-        printMainMenu()
+        self.printMainMenu()
         print("-- (a) New Order.")
         print("-- (b) Find Order.")
         print("-- (c) All Orders.")
     
     def printFindOrderMenu(self):
-        printOrderMenu()
+        self.printOrderMenu()
         print("---- (d) Update Order.")
         print("---- (e) Delete Order")
     
     def printCustomerMenu(self):
-        printMainMenu()
+        self.printMainMenu()
         print("-- (a) New Customer.")
         print("-- (b) Find Customer.")
         print("-- (c) All Customers.")
 
     def printFindCustomerMenu(self):
-        printCustomerMenu()
+        self.printCustomerMenu()
         print("---- (d) Update Customer.")
         print("---- (e) Delete Customer.")
 
     def printVehicleMenu(self):
-        printMainMenu()
+        self.printMainMenu()
         print("-- (a) New Vehicle.")
         print("-- (b) Find Vehicle.")
         print("-- (c) All Vehicles.")
 
     def printFindVehicleMenu(self):
-        printVehicleMenu()
+        self.printVehicleMenu()
         print("---- (d) Update Vehicle.")
         print("---- (e) Delete Vehicle.")
