@@ -44,7 +44,7 @@ class CustomerUI:
 
         customer = self.__CustomerService.FindCustomer(customer_id)
         print(customer)
-        
+
     def AllCustomer(self):
         customers = self.__CustomerService.GetCustomer()
   
