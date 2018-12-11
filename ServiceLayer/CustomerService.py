@@ -1,6 +1,7 @@
 # This is the CustomerService class
 
 from RepositoryLayer.CustomerRepository import CustomerRepository
+from Models.Customer import Customer
 
 class CustomerService:
     def __init__(self):
@@ -17,7 +18,10 @@ class CustomerService:
     def GetCustomer(self):
         return self.__customer_repo.GetCustomer()
 
-    def FindCustomer(self, ):
+    def FindCustomer(self, customer_id):
 
-        return self
+        customers = self.__customer_repo.GetCustomer()
+        for customer in customers:
+            if customer.getID() == customer_id
+                return customer
     
