@@ -8,6 +8,8 @@ class OrderUI(object):
     def __init__(self):
         self.__order_service = OrderService()
         self.__choice = ""
+        self.__selected_order = ""
+
     def start(self):
         while self.__choice != "q":
             self.printMenu()
@@ -16,7 +18,8 @@ class OrderUI(object):
             if self.__choice == "1":
                 self.newOrder()
             elif self.__choice == "2":
-                self.findOrder()
+                search = self.getInput("Enter order ID")
+                self.findOrder(search)
             elif self.__choice == "3":
                 self.allOrders()
             elif self.__choice == "4":
@@ -25,6 +28,7 @@ class OrderUI(object):
                 self.deleteOrder()
 
     def printMenu(self):
+        print ("\n" * 100)
         print("1. New order")
         print("2. Find order")
         print("3. All orders")
@@ -41,12 +45,16 @@ class OrderUI(object):
         new_order = Order(id, customer, vehicle, start_date, end_date, payment)
         self.__order_service.addOrder(new_order)
 
-    def findOrder(self, search_term):
-        #self.__order_service.findOrder(search_term)
-        pass
+    def findOrder(self, order_id):
+        self.__selected_order = self.__order_service.findOrder(order_id)
+        print(self.__selected_order)
+        
 
     def allOrders(self):
         self.__order_service.getOrders()
+
+    def deleteOrder(self):
+        pass
 
     def updateOrder(self):
         customer = self.getInput("Customer: ")
