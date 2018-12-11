@@ -1,5 +1,5 @@
 class Customer():
-    def __init__(self, name, id, phone, address, email):
+    def __init__(self, name, customer_id, phone, address, email):
         self.__name = name
         self.__id = customer_id
         self.__phone = phone
@@ -35,4 +35,3 @@ class Customer():
 
     def __str__(self):
         print(self.__name)
-        
