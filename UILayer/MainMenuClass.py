@@ -10,9 +10,9 @@ from ServiceLayer.VehicleService import VehicleService
 
 class MainMenu:
     def __init__(self):
-        #self.__customer_ui = CustomerUI()
+        self.__customer_ui = CustomerUI()
         self.__order_ui = OrderUI()
-        #self.__vehicle_ui = VehicleUI()
+        self.__vehicle_ui = VehicleUI()
         self.__vehicle_service = VehicleService()
         self.__customer_service = CustomerService()
         self.__order_service = OrderService()
@@ -23,11 +23,11 @@ class MainMenu:
             self.printMainMenu()
             self.__choice = self.getInput()
             if self.__choice == "1":
-                OrderUI.start(self)
+                self.__order_ui.start()
             elif self.__choice == "2":
-                CustomerUI.start(self)
+                self.__customer_ui.start()
             elif self.__choice == "3":
-                VehicleUI.start(self)
+                self.__vehicle_ui.start()
 
     def getInput(self, prompt=""):
         return input(prompt)

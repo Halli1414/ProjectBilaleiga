@@ -7,12 +7,12 @@ class CustomerRepository:
         self.__customer = []
 
     def AddCustomer(self, customer):
-        with open("/Data/customer.txt","a+") as customer_file:
-            name = customer.get_name()
-            customer_id = customer.get_id()
-            phone = customer.get_phone()
-            address = customer.get_address()
-            email = customer.get_email()
+        with open("./Data/customer.txt","a+") as customer_file:
+            name = customer.getName()
+            customer_id = customer.getID()
+            phone = customer.getPhone()
+            address = customer.getAddress()
+            email = customer.getEmail()
             customer_file.write("{},{},{},{},{}\n".format(name, customer_id, phone, address, email))
     
     def GetCustomer(self):

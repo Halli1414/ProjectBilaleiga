@@ -16,6 +16,6 @@ class OrderService(object):
     def findOrder(slef, order_id):
         return_order = None
         for order in self.__orders:
-            if order.getID = order_id:
+            if order.getID() == order_id:
                 return_order = order
         return return_order
