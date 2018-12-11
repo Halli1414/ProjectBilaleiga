@@ -4,7 +4,7 @@ from Models.Customer import Customer
 class CustomerUI:
 
     def __init__(self):
-        self.__customer_service = CustomerService()
+        self.__CustomerService = CustomerService()
 
     def PrintMenu(self):
 
@@ -13,7 +13,7 @@ class CustomerUI:
         print("3. All customer ")
         print("4. Update customer ")
         print("5. Delete customer ")
-    
+   
     def NewCustomer(self):
         name = input("Name: ")
         customer_id = input("ID: ")
@@ -21,9 +21,6 @@ class CustomerUI:
         phone = input("Phone number: ")
         address = input("Address: ")
 
-        new_customer = Customer(name, customer_id, phone, address, email)
-        self.__customer_service.addCustomer(new_customer)
-
-    def DeleteCustomer(self):
-
-
+        NewCustomer = Customer(name, customer_id, phone, address, email)
+        self.__CustomerService.AddCustomer(NewCustomer)
+ 
