@@ -34,4 +34,4 @@ class Customer():
         self.__email = new_email
 
     def __str__(self):
-        print(self.__name)
+        return(self.__name)
