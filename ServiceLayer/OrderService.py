@@ -5,6 +5,7 @@ class OrderService(object):
 
     def __init__(self):
         self.__order_repo = OrderRepository()
+        self.__orders = []
 
     def addOrder(self, order):
         self.__order_repo.addOrder(order)
