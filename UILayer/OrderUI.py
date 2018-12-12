@@ -10,22 +10,22 @@ class OrderUI(object):
         self.__choice = ""
         self.__selected_order = None
 
-    def start(self):
-        while self.__choice != "q":
-            self.printMenu()
-            self.__choice = self.getInput().lower()
+    # def start(self):
+    #     while self.__choice != "q":
+    #         self.printMenu()
+    #         self.__choice = self.getInput().lower()
 
-            if self.__choice == "1":
-                self.newOrder()
-            elif self.__choice == "2":
-                search = self.getInput("Enter order ID")
-                self.findOrder(search)
-            elif self.__choice == "3":
-                self.allOrders()
-            elif self.__choice == "4":
-                self.updateOrder()
-            elif self.__choice == "5":
-                self.deleteOrder()
+    #         if self.__choice == "1":
+    #             self.newOrder()
+    #         elif self.__choice == "2":
+    #             search = self.getInput("Enter order ID")
+    #             self.findOrder(search)
+    #         elif self.__choice == "3":
+    #             self.allOrders()
+    #         elif self.__choice == "4":
+    #             self.updateOrder()
+    #         elif self.__choice == "5":
+    #             self.deleteOrder()
 
     def printMenu(self):
         print ("\n" * 100)
