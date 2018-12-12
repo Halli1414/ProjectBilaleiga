@@ -1,5 +1,6 @@
 # this is the VehicleService class
 from RepositoryLayer.VehicleRepository import VehicleRepository
+
 class VehicleService(object):
     def __init__(self):
         self.__vehicle_repo = VehicleRepository()
@@ -32,4 +33,14 @@ class VehicleService(object):
             if vehicle.getStatus() == "unavailable":
                 return_vehicle = vehicle
         return return_vehicle
+    
+    def getNextAvailable(self, catagory):
+        return_vehicle = None
+        for vehicle in self.__vehicles:
+            if vehicle.getVehicleStatus() == "available":
+                if vehicle.getCatagory() == catagory:
+                    return_vehicle = vehicle
+        return return_vehicle
+
+
 

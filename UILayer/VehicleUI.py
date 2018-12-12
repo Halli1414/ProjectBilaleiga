@@ -16,7 +16,6 @@ class VehicleUI:
         while self.__choice != "q":
             self.printMenu()
             self.__choice = self.getInput().lower()
-
             if self.__choice == "1":
                 self.findVehicles()
             elif self.__choice == "2":
@@ -58,15 +57,19 @@ class VehicleUI:
 
 
     def addVehicle(self):
-        Vehicle_id = input("ID: ")
-        Model = input("Model: ")
-        Manufacturer = input("Manufacturer: ")
-        Color = input("Color: ")
-        VehicleStatus = input("VehicleStatus: ")
-        Kilometers = input("Kilometers: ")
-        new_vehicle = Vehicle(
-            Vehicle_id, Model, Manufacturer, Color, VehicleStatus, Kilometers
+        vehicle_id = input("ID: ")
+        model = input("Model: ")
+        manufacturer = input("Manufacturer: ")
+        color = input("Color: ")
+        vehicleStatus = input("VehicleStatus: ")
+        kilometers = input("Kilometers: ")
+        category = input("Category: ")
+        new_vehicle = vehicle(
+            vehicle_id, model, manufacturer, color, vehicleStatus, kilometers, category
             )
 
     def getInput(self):
         return input()
+    
+    def getNextAvailable(self, category):
+        return self.__vehicle_service.getNextAvailable(category)

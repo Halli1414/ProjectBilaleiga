@@ -13,14 +13,15 @@ class VehicleRepository:
             Color = Vehicle.get_Color()
             VehicleStatus = Vehicle.get_VehicleStatus()
             Kilometers = Vehicle.get_Kilometers()
-            Vehicle_file.write("{},{},{},{},{},{}\n".format(Manufacturer, Model,id, Color, VehicleStatus, Kilometers))
+            Catagory = Catagory.get_Catagory()
+            Vehicle_file.write("{},{},{},{},{},{},{}\n".format(Manufacturer, Model,id, Color, VehicleStatus, Kilometers, Catagory))
     
     def getVehicle(self):
         if self.__Vehicle == []:
             with open("./Data/vehicles.txt", "r") as vehicle_file:
                 for line in vehicle_file.readlines():
-                    Manufacturer, Model, id, Color, VehicleStatus, Kilometers = line.split(",")
-                    new_Vehicle = Vehicle(Manufacturer, Model, id, Color, VehicleStatus, Kilometers)
+                    Manufacturer, Model, id, Color, VehicleStatus, Kilometers, Catagory = line.split(",")
+                    new_Vehicle = Vehicle(Manufacturer, Model, id, Color, VehicleStatus, Kilometers, Catagory)
                     self.__Vehicle.append(new_Vehicle)
         return self.__Vehicle
 
