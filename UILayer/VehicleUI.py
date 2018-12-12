@@ -9,7 +9,7 @@ class VehicleUI:
         self.__choice = ""
         self.__selectedVehicle = None
 
-    def getSelectedVehicle(self):
+    def getSelected(self):
         return self.__selectedVehicle
 
     def start(self):
