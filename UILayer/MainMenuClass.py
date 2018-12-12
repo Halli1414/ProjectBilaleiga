@@ -16,6 +16,9 @@ class MainMenu:
         self.__vehicle_service = VehicleService()
         self.__customer_service = CustomerService()
         self.__order_service = OrderService()
+        self.__selected_order = None
+        self.__selected_vehicle = None
+        self.__selected_customer = None
         self.__choice = ""
 
     def start(self):
@@ -23,11 +26,39 @@ class MainMenu:
             self.printMainMenu()
             self.__choice = self.getInput()
             if self.__choice == "1":
-                self.__order_ui.start()
+                while self.__choice != "q":
+                    self.__order_ui.printMenu()
+                    self.__choice = self.getInput()
+                    if self.__choice == "1":
+                        self.__order_ui.newOrder()
+                    elif self.__choice == "2":
+                        search = self.getInput("Enter order ID")
+                        self.__order_ui.findOrder(search)
+                    elif self.__choice == "3":
+                        self.__order_ui.allOrders()
+                    elif self.__choice == "4":
+                        self.__order_ui.updateOrder()
+                    elif self.__choice == "5":
+                        self.__order_ui.deleteOrder()
+                self.__selected_order = self.__order_ui.getSelected()
             elif self.__choice == "2":
-                self.__customer_ui.start()
+                while self.__choice != "q":
+                    self.printMenu()
+                    self.__choice = self.getInput()
+                    if self.__choice == "1":
+                        self.__customer_ui.newCustomer()
+                    elif self.__choice == "2": 
+                        self.__customer_ui.findCustomer()
+                    elif self.__choice == "3":
+                        self.__customer_ui.allCustomer()
+                    elif self.__choice == "4":
+                        self.__customer_ui.updateCustomer()
+                    elif self.__choice == "5":
+                        self.__customer_ui.deleteCustomer()
+                self.__selected_customer = self.__customer_ui.getSelected()
             elif self.__choice == "3":
                 self.__vehicle_ui.start()
+                self.__selected_vehicle = self.__vehicle_ui.getSelected()
 
     def getInput(self, prompt=""):
         return input(prompt)
