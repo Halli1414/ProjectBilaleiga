@@ -8,7 +8,7 @@ class OrderUI(object):
     def __init__(self):
         self.__order_service = OrderService()
         self.__choice = ""
-        self.__selected_order = ""
+        self.__selected_order = None
 
     def start(self):
         while self.__choice != "q":
@@ -35,15 +35,17 @@ class OrderUI(object):
         print("4. Update order")
         print("5. Delete order")
 
-    def newOrder(self):
-        customer = self.getInput("Customer: ")
-        vehicle = self.getInput("Vehicle: ")
+    def newOrder(self, a_customer, a_vehicle):
+        customer = a_customer
+        vehicle = a_vehicle
         start_date = self.getInput("Start date(yyyy/mm/dd): ")
         end_date = self.getInput("End date(yyyy/mm/dd): ")
         payment = self.getInput("Payment")
 
         new_order = Order(id, customer, vehicle, start_date, end_date, payment)
         self.__order_service.addOrder(new_order)
+
+        self.__selected_order = new_order
 
     def findOrder(self, order_id):
         self.__selected_order = self.__order_service.findOrder(order_id)
@@ -65,3 +67,6 @@ class OrderUI(object):
 
     def getInput(self, prompt=""):
         return input(prompt)
+    
+    def getSelected(self):
+        return self.__selected_order
