@@ -4,61 +4,66 @@ from Models.Customer import Customer
 class CustomerUI:
 
     def __init__(self):
-        self.__CustomerService = CustomerService()
+        self.__customer_service = CustomerService()
         self.__choice = ""
-        self.__selectedCustomer = None
+        self.__selected_customer = None
 
     def start(self):
         while self.__choice != "q":
-            self.PrintMenu()
+            self.printMenu()
             self.__choice = input("")
             if self.__choice == "1":
-                self.NewCustomer()
+                self.newCustomer()
             elif self.__choice == "2": 
-                self.FindCustomer()
+                self.findCustomer()
             elif self.__choice == "3":
-                self.AllCustomer()
+                self.allCustomer()
             elif self.__choice == "4":
-                self.UpdateCustomer()
+                self.updateCustomer()
             elif self.__choice == "5":
-                self.DeleteCustomer()
+                self.deleteCustomer()
 
-    def GetSelected(self):
-        return self.__selectedCustomer
+    def getSelected(self):
+        return self.__selected_customer
 
-    def PrintMenu(self):
+    def printMenu(self):
         print("1. New Customer ")
         print("2. Find Customer ")
         print("3. All customer ")
         print("4. Update customer ")
         print("5. Delete customer ")
    
-    def NewCustomer(self):
+    def newCustomer(self):
         name = input("Name: ")
         customer_id = input("ID: ")
         email = input("Email: ")
         phone = input("Phone number: ")
         address = input("Address: ")
 
-        NewCustomer = Customer(name, customer_id, phone, address, email)
-        self.__CustomerService.AddCustomer(NewCustomer)
+        new_customer = Customer(name, customer_id, phone, address, email)
+        self.__customer_service.addCustomer(new_customer)
     
-    def FindCustomer(self):
+    def findCustomer(self):
         customer_id = input("ID: ")
 
-        customer = self.__CustomerService.FindCustomer(customer_id)
+        customer = self.__customer_service.findCustomer(customer_id)
         print(customer)
 
-    def AllCustomer(self):
-        customers = self.__CustomerService.GetCustomer()
-  
-    def UpdateCustomer(self):
+    def allCustomer(self):
+        customers = self.__customer_service.getCustomer()
+        print("{:<30}{:<10}{:<7}{:<30}{:<25}".format(
+            "Name", "ID", "Phone", "Address", "Email"
+            ))
+        for customer in customers:
+            print(customer)
+
+    def updateCustomer(self):
         name = input("Name: ")
         customer_id = input("ID: ")
         email = input("Email: ")
         phone = input("Phone number: ")
         address = input("Address: ")
 
-    def DeleteCustomer(self):
-        pass
+    def deleteCustomer(self):
+       self.__customer_service
     
