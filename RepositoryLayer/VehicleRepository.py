@@ -20,7 +20,7 @@ class VehicleRepository:
         if self.__Vehicle == []:
             with open("./Data/vehicles.txt", "r") as vehicle_file:
                 for line in vehicle_file.readlines():
-                    Manufacturer, Model, id, Color, VehicleStatus, Kilometers, Catagory = line.split(",")
+                    Manufacturer, Model, id, Color, VehicleStatus, Kilometers, Category = line.split(",")
                     new_Vehicle = Vehicle(Manufacturer, Model, id, Color, VehicleStatus, Kilometers, Category)
                     self.__Vehicle.append(new_Vehicle)
         return self.__Vehicle
