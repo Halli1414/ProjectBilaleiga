@@ -17,11 +17,14 @@ class Vehicle:
         return self.__manufacturer
     def getModel(self):
         return self.__model
+    def getColor(self):
         return self.__color
     def getKilometers(self):
         return self.__kilometers
     def getCategory(self):
         return self.__category
+    def getVehicleStatus(self):
+        return self.__vehicleStatus
     def setKilometers(self):
         return self.__kilometers
     def setVehicleStatus(self):

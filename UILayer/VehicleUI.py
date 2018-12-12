@@ -34,6 +34,7 @@ class VehicleUI:
         print("3.All available")
         print("4.All unavailable")
         print("5.Add vehicle")
+        print("6.Return vehicle")
         
 
     def findVehicles(self):
@@ -65,9 +66,14 @@ class VehicleUI:
         vehicleStatus = input("VehicleStatus: ")
         kilometers = input("Kilometers: ")
         category = input("Category: ")
-        new_vehicle = vehicle(
+        new_vehicle = Vehicle(
             vehicle_id, model, manufacturer, color, vehicleStatus, kilometers, category
             )
+        self.__vehicle_service.addVehicle(new_vehicle)
+
+    def returnVehicle(self, id):
+        return self.__vehicle_service.returnVehicle(id)
+
 
     def getInput(self):
         return input()

@@ -20,27 +20,36 @@ class VehicleService(object):
         return return_vehicle
 
     
-    def allAvailable(self):
+    def allAvailable(self, getStatus):
         return_vehicle = None
         for vehicle in self.__vehicles:
-            if vehicle.getStatus() == "available":
+            if vehicle.getStatus() == "1":
                 return_vehicle = vehicle
         return return_vehicle
     
-    def allUnavailable(self):
+    def allUnavailable(self, getStatus):
         return_vehicle = None
         for vehicle in self.__vehicles:
-            if vehicle.getStatus() == "unavailable":
+            if vehicle.getStatus() == "2":
                 return_vehicle = vehicle
         return return_vehicle
     
     def getNextAvailable(self, catagory):
         return_vehicle = None
         for vehicle in self.__vehicles:
-            if vehicle.getVehicleStatus() == "available":
+            if vehicle.getVehicleStatus() == "1":
                 if vehicle.getCatagory() == catagory:
                     return_vehicle = vehicle
         return return_vehicle
+    
+    def returnVehicle(self, id):
+        returnVehicle = None 
+        for vehicle in self.__vehicles:
+            returnVehicle = input("ID: ")
+            if returnVehicle == "2":
+                returnVehicle = "1"
+            elif returnVehicle == "1":
+                print("Vehicle is already available")
 
 
 

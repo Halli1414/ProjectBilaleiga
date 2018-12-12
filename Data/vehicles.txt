@@ -4,3 +4,4 @@ Toyota,auris,HA345,silver,90000,unavailable,3
 Kia,Crv,MS345,gold,50000,available,2
 Honda,Crv,GT345,green,70000,available,2
 Ford,GT,ER345,blue,65000,unavailable,1
+FC567,CRV,Honda,Black,40000,available,1

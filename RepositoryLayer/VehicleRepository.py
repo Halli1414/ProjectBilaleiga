@@ -7,13 +7,13 @@ class VehicleRepository:
 
     def addVehicle(self, Vehicle):
         with open("./Data/vehicles.txt","a+") as Vehicle_file:
-            Manufacturer = Vehicle.get_Manufacturer()
-            Model = Vehicle.get_Model()
-            id = Vehicle.get_Id()
-            Color = Vehicle.get_Color()
-            VehicleStatus = Vehicle.get_VehicleStatus()
-            Kilometers = Vehicle.get_Kilometers()
-            Category = Vehicle.get_Category()
+            Manufacturer = Vehicle.getManufacturer()
+            Model = Vehicle.getModel()
+            id = Vehicle.getID()
+            Color = Vehicle.getColor()
+            VehicleStatus = Vehicle.getVehicleStatus()
+            Kilometers = Vehicle.getKilometers()
+            Category = Vehicle.getCategory()
             Vehicle_file.write("{},{},{},{},{},{},{}\n".format(Manufacturer, Model,id, Color, VehicleStatus, Kilometers, Category))
     
     def getVehicle(self):
