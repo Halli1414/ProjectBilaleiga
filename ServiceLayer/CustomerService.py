@@ -7,7 +7,7 @@ class CustomerService:
     def __init__(self):
         self.__customer_repo = CustomerRepository()
         self.__customers = self.__customer_repo.getCustomer()
-        
+
     def addCustomer(self, customer):
         if self.isValidCustomer(customer):
             self.__customer_repo.addCustomer(customer)
@@ -26,7 +26,8 @@ class CustomerService:
                 return customer
     
     def deleteCustomer(self, selected_customer):
-        for i in range(len(self.__customers)):
+        for i in range(0,len(self.__customers)):
             if self.__customers[i].getID() == selected_customer.getID():
                 self.__customers.pop(i)
+                self.__customer_repo.deleteCustomer(self.__customers)
     
