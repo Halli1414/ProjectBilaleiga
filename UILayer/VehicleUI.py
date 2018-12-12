@@ -7,6 +7,10 @@ class VehicleUI:
     def __init__(self):
         self.__vehicle_service = VehicleService()
         self.__choice = ""
+        self.__selectedVehicle = None
+
+    def getSelectedVehicle(self):
+        return self.__selectedVehicle
 
     def start(self):
         while self.__choice != "q":
@@ -36,6 +40,7 @@ class VehicleUI:
         vehicle_id = input("ID: ")
         vehicle = self.__vehicle_service.findVehicle(vehicle_id)
         print("vehicle: ", vehicle)
+
 
     def allVehicles(self):
         self.__vehicle_service.getVehicle()
