@@ -18,7 +18,7 @@ class Customer():
     def getAddress(self):
         return self.__address
 
-    def get_Email(self):
+    def getEmail(self):
         return self.__email
 
     def setName(self, new_name):

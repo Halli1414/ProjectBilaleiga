@@ -40,14 +40,16 @@ class CustomerUI:
         phone = input("Phone number: ")
         address = input("Address: ")
 
-        new_customer = Customer(name, customer_id, phone, address, email)
+        new_customer = Customer(name, customer_id, email, phone, address)
         self.__customer_service.addCustomer(new_customer)
+        self.__selected_customer = new_customer
     
     def findCustomer(self):
         customer_id = input("ID: ")
 
         customer = self.__customer_service.findCustomer(customer_id)
         print(customer)
+        self.__selected_customer = customer
 
     def allCustomer(self):
         customers = self.__customer_service.getCustomer()
