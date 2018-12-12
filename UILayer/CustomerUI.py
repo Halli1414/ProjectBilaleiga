@@ -51,6 +51,9 @@ class CustomerUI:
 
     def allCustomer(self):
         customers = self.__customer_service.getCustomer()
+        print("{:<30}{:<10}{:<7}{:<30}{:<25}".format(
+            "Name", "ID", "Phone", "Address", "Email"
+            ))
         for customer in customers:
             print(customer)
 
