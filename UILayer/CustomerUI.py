@@ -6,6 +6,7 @@ class CustomerUI:
     def __init__(self):
         self.__CustomerService = CustomerService()
         self.__choice = ""
+        self.__selectedCustomer = None
 
     def start(self):
         while self.__choice != "q":
@@ -21,6 +22,9 @@ class CustomerUI:
                 self.UpdateCustomer()
             elif self.__choice == "5":
                 self.DeleteCustomer()
+
+    def GetSelected(self):
+        return self.__selectedCustomer
 
     def PrintMenu(self):
         print("1. New Customer ")
@@ -57,3 +61,4 @@ class CustomerUI:
 
     def DeleteCustomer(self):
         pass
+    
