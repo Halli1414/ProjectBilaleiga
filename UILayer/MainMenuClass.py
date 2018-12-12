@@ -22,7 +22,7 @@ class MainMenu:
         self.__choice = ""
 
     def start(self):
-        while self.__choice.lower() != "q":
+        while self.__choice.lower() != "exit":
             self.printMainMenu()
             self.__choice = self.getInput()
             if self.__choice == "1":
@@ -30,7 +30,7 @@ class MainMenu:
                     self.__order_ui.printMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
-                        self.__order_ui.newOrder()
+                        self.__order_ui.newOrder(self.__selected_customer, self.__selected_vehicle)
                     elif self.__choice == "2":
                         search = self.getInput("Enter order ID")
                         self.__order_ui.findOrder(search)
@@ -43,7 +43,7 @@ class MainMenu:
                 self.__selected_order = self.__order_ui.getSelected()
             elif self.__choice == "2":
                 while self.__choice != "q":
-                    self.printMainMenu()
+                    self.__customer_ui.printMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
                         self.__customer_ui.newCustomer()
@@ -58,7 +58,7 @@ class MainMenu:
                 self.__selected_customer = self.__customer_ui.getSelected()
             elif self.__choice == "3":
                 while self.__choice != "q":
-                    self.printMainMenu()
+                    self.__vehicle_ui.printMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
                         self.__vehicle_ui.findVehicles()
@@ -77,41 +77,8 @@ class MainMenu:
 
     def printMainMenu(self):
         print ("\n" * 100)
-        print("(Enter (q) to quit).")
+        print("Enter (exit) to quit.")
         print("'RENT-A-CAR'")
         print("(1) Orders")
         print("(2) Customer")
         print("(3) Vehicles")
-
-    def printOrderMenu(self):
-        self.printMainMenu()
-        print("-- (a) New Order.")
-        print("-- (b) Find Order.")
-        print("-- (c) All Orders.")
-    
-    def printFindOrderMenu(self):
-        self.printOrderMenu()
-        print("---- (d) Update Order.")
-        print("---- (e) Delete Order")
-    
-    def printCustomerMenu(self):
-        self.printMainMenu()
-        print("-- (a) New Customer.")
-        print("-- (b) Find Customer.")
-        print("-- (c) All Customers.")
-
-    def printFindCustomerMenu(self):
-        self.printCustomerMenu()
-        print("---- (d) Update Customer.")
-        print("---- (e) Delete Customer.")
-
-    def printVehicleMenu(self):
-        self.printMainMenu()
-        print("-- (a) New Vehicle.")
-        print("-- (b) Find Vehicle.")
-        print("-- (c) All Vehicles.")
-
-    def printFindVehicleMenu(self):
-        self.printVehicleMenu()
-        print("---- (d) Update Vehicle.")
-        print("---- (e) Delete Vehicle.")
