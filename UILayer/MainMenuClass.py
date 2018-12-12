@@ -43,7 +43,11 @@ class MainMenu:
                 self.__selected_order = self.__order_ui.getSelected()
             elif self.__choice == "2":
                 while self.__choice != "q":
+<<<<<<< HEAD
                     self.printMainMenu()
+=======
+                    self.printMenu()
+>>>>>>> 2fd975805fb214c5ba6391dab6ed4fa41272a357
                     self.__choice = self.getInput()
                     if self.__choice == "1":
                         self.__customer_ui.newCustomer()
