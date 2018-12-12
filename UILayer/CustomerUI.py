@@ -51,7 +51,7 @@ class CustomerUI:
 
     def allCustomer(self):
         customers = self.__customer_service.getCustomer()
-        print("{:<30}{:<10}{:<7}{:<30}{:<25}".format(
+        print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(
             "Name", "ID", "Phone", "Address", "Email"
             ))
         for customer in customers:
@@ -65,5 +65,6 @@ class CustomerUI:
         address = input("Address: ")
 
     def deleteCustomer(self):
-       self.__customer_service
+       self.__customer_service.deleteCustomer(self.__selected_customer)
+
     
