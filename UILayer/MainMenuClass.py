@@ -43,18 +43,18 @@ class MainMenu:
                 self.__selected_order = self.__order_ui.getSelected()
             elif self.__choice == "2":
                 while self.__choice != "q":
-                    self.PrintMenu()
+                    self.printMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
-                        self.__customer_ui.NewCustomer()
+                        self.__customer_ui.newCustomer()
                     elif self.__choice == "2": 
-                        self.__customer_ui.FindCustomer()
+                        self.__customer_ui.findCustomer()
                     elif self.__choice == "3":
-                        self.__customer_ui.AllCustomer()
+                        self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
-                        self.__customer_ui.UpdateCustomer()
+                        self.__customer_ui.updateCustomer()
                     elif self.__choice == "5":
-                        self.__customer_ui.DeleteCustomer()
+                        self.__customer_ui.deleteCustomer()
                 self.__selected_customer = self.__customer_ui.getSelected()
             elif self.__choice == "3":
                 self.__vehicle_ui.start()
