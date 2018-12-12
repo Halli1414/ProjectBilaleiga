@@ -28,6 +28,7 @@ class VehicleUI:
                 self.addVehicle() 
 
     def printMenu(self):
+        print("\n"*100)
         print("1.Find vehicle")
         print("2.All vehicles")
         print("3.All available")
