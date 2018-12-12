@@ -17,7 +17,6 @@ class Vehicle:
         return self.__manufacturer
     def getModel(self):
         return self.__model
-    def getColor(self):
         return self.__color
     def getKilometers(self):
         return self.__kilometers
@@ -31,8 +30,8 @@ class Vehicle:
         return self.__category
     
     def __str__(self):
-        return "Order ID: {} Manufacturer: {} Model: {} Color: {} Kilometers: {} VehicleStatus {}".format(
-            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicleStatus
+        return "Order ID: {} Manufacturer: {} Model: {} Color: {} Kilometers: {} VehicleStatus {} Category {}".format(
+            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicleStatus, self.__category
         )
     
 
