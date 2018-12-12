@@ -13,9 +13,6 @@ class MainMenu:
         self.__customer_ui = CustomerUI()
         self.__order_ui = OrderUI()
         self.__vehicle_ui = VehicleUI()
-        self.__vehicle_service = VehicleService()
-        self.__customer_service = CustomerService()
-        self.__order_service = OrderService()
         self.__selected_order = None
         self.__selected_vehicle = None
         self.__selected_customer = None
@@ -25,22 +22,46 @@ class MainMenu:
         while self.__choice.lower() != "exit":
             self.printMainMenu()
             self.__choice = self.getInput()
+            #Order menu
             if self.__choice == "1":
                 while self.__choice != "q":
                     self.__order_ui.printMenu()
                     self.__choice = self.getInput()
+                    #New order
                     if self.__choice == "1":
-                        self.__order_ui.newOrder(self.__selected_customer, self.__selected_vehicle)
+                        #No Customer selected, user asked for a customer
+                        if self.__selected_customer == None:
+                            print("No selected customer.")
+                            self.otherCustomerOptions()
+                        #Customer selected, user asked whether to use seleted
+                                               
+                        self.__choice = self.customerConfirm()
+                        while self.__choice != "y":
+                            self.otherCustomerOptions()
+                            self.customerConfirm()
+
+                        print("Vehicle category(1/2/3)?")
+                        category = self.getInput().lower()
+                        self.__selected_vehicle = self.__vehicle_ui.getNextAvailable(category)
+                        self.__order_ui.newOrder(
+                            self.__selected_customer, self.__selected_vehicle
+                            )
+
+                    #Find order
                     elif self.__choice == "2":
                         search = self.getInput("Enter order ID")
                         self.__order_ui.findOrder(search)
+                    #All orders
                     elif self.__choice == "3":
                         self.__order_ui.allOrders()
+                    #Update order
                     elif self.__choice == "4":
                         self.__order_ui.updateOrder()
+                    #Delete order
                     elif self.__choice == "5":
                         self.__order_ui.deleteOrder()
                 self.__selected_order = self.__order_ui.getSelected()
+            #Customer menu
             elif self.__choice == "2":
                 while self.__choice != "q":
                     self.__customer_ui.printMenu()
@@ -56,6 +77,7 @@ class MainMenu:
                     elif self.__choice == "5":
                         self.__customer_ui.deleteCustomer()
                 self.__selected_customer = self.__customer_ui.getSelected()
+            #Vehicle menu
             elif self.__choice == "3":
                 while self.__choice != "q":
                     self.__vehicle_ui.printMenu()
@@ -82,3 +104,20 @@ class MainMenu:
         print("(1) Orders")
         print("(2) Customer")
         print("(3) Vehicles")
+
+    def otherCustomerOptions(self):
+        print("Register new customer(N)")
+        print("Find customer(F)")
+        print("List all customers(L)")
+        choice = self.getInput().lower()
+        if choice == "n":
+            self.__customer_ui.newCustomer()
+        elif choice == "f":
+            self.__customer_ui.findCustomer()
+        elif choice == "l":
+            self.__customer_ui.allCustomer()
+
+    def customerConfirm(self):
+        print(self.__selected_customer)
+        print("Use selected customer?(Y/N)")
+        return input().lower()
