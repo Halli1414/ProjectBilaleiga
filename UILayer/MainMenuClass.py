@@ -43,7 +43,7 @@ class MainMenu:
                 self.__selected_order = self.__order_ui.getSelected()
             elif self.__choice == "2":
                 while self.__choice != "q":
-                    self.printMenu()
+                    self.printMainMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
                         self.__customer_ui.newCustomer()
@@ -57,15 +57,23 @@ class MainMenu:
                         self.__customer_ui.deleteCustomer()
                 self.__selected_customer = self.__customer_ui.getSelected()
             elif self.__choice == "3":
-                self.__vehicle_ui.start()
+                while self.__choice != "q":
+                    self.printMainMenu()
+                    self.__choice = self.getInput()
+                    if self.__choice == "1":
+                        self.__vehicle_ui.findVehicles()
+                    elif self.__choice == "2":
+                        self.__vehicle_ui.allVehicles()
+                    elif self.__choice == "3":
+                        self.__vehicle_ui.allAvailable()
+                    elif self.__choice == "4":
+                        self.__vehicle_ui.allUnavailable()
+                    elif self.__choice == "5":
+                        self.__vehicle_ui.addVehicle()
                 self.__selected_vehicle = self.__vehicle_ui.getSelected()
 
     def getInput(self, prompt=""):
         return input(prompt)
-
-    def printScreen(self):
-        self.printMainMenu()
-       # return Menu????
 
     def printMainMenu(self):
         print ("\n" * 100)
