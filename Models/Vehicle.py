@@ -33,13 +33,8 @@ class Vehicle:
         return self.__category
     
     def __str__(self):
-<<<<<<< HEAD
-        return "Order ID: {} Manufacturer: {} Model: {} Color: {} Kilometers: {} VehicleStatus {} Category {}".format(
-            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicle_status, self.__category
-=======
         return "{};{};{};{};{};{};{}".format(
-            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicleStatus, self.__category
->>>>>>> 30bb885bc2a30e30a72dd949245f2822138020d7
+            self.__id, self.__manufacturer, self.__model, self.__color, self.__kilometers, self.__vehicle_status, self.__category
         )
     
 

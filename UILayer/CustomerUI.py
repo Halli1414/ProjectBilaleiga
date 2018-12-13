@@ -8,21 +8,6 @@ class CustomerUI:
         self.__choice = ""
         self.__selected_customer = None
 
-    def start(self):
-        while self.__choice != "q":
-            self.printMenu()
-            self.__choice = input("")
-            if self.__choice == "1":
-                self.newCustomer()
-            elif self.__choice == "2": 
-                self.findCustomer()
-            elif self.__choice == "3":
-                self.allCustomer()
-            elif self.__choice == "4":
-                self.updateCustomer()
-            elif self.__choice == "5":
-                self.deleteCustomer()
-
     def getSelected(self):
         return self.__selected_customer
 
