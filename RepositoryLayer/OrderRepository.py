@@ -24,6 +24,7 @@ class OrderRepository(object):
         if self.__orders == []:
             with open("./Data/orders.txt", "r") as order_file:
                 for line in order_file.readlines():
+                    line.strip("\n")
                     order_id, customer, vehicle, order_start_date, order_end_date, payment = line.split(",")
                     customer_obj = self.customerToOject(customer)
                     vehicle_obj = self.vehicleToObject(vehicle)

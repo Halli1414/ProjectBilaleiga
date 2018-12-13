@@ -19,6 +19,7 @@ class CustomerRepository:
         if self.__customers == []:
             with open("./Data/customer.txt", "r") as customer_file:
                 for line in customer_file.readlines():
+                    line = line.strip("\n")
                     name, customer_id, phone, address, email = line.split(",")
                     new_customer = Customer(name, customer_id, phone, address, email)
                     self.__customers.append(new_customer)

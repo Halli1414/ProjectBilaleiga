@@ -8,17 +8,30 @@ class OrderService(object):
         self.__order_repo = OrderRepository()
         self.__orders = self.__order_repo.getOrders()
 
-    def addOrder(self, order):
-        self.__order_repo.addOrder(order)
-
-    def getOrders(self):
-        return self.__order_repo.getOrders()
-
     def getLastOrderID(self):
         if self.__orders == []:
             return 0
         else:
             return self.__orders[-1].getID()
+
+    def getNextOrderID(self):
+        next_id = int(self.getLastOrderID())
+        next_id += 1
+        return str(next_id)
+
+    def addOrder(self, customer, vehicle, start_date, end_date, payment):
+
+        order_id = self.getNextOrderID()
+
+        new_order = Order(order_id, customer, vehicle, start_date, end_date, payment)
+        self.__order_repo.addOrder(new_order)
+        self.refresh_orders_list()
+        return new_order
+
+    def getOrders(self):
+        return self.__order_repo.getOrders()
+
+
 
     def findOrder(self, order_id):
         return_order = None
@@ -47,3 +60,6 @@ class OrderService(object):
                 return "Order deleted"
             else:
                 return "Order not found"
+
+    def refresh_orders_list(self):
+        self.__orders = self.__order_repo.getOrders()

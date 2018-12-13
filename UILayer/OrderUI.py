@@ -36,11 +36,6 @@ class OrderUI(object):
         print("5. Delete order")
 
     def newOrder(self, a_customer, a_vehicle):
-        if self.__order_service.getLastOrderID() == None:
-            order_id = 1
-        else:
-            order_id = self.__order_service.getLastOrderID() + 1
-
         customer = a_customer
         vehicle = a_vehicle
         year, month, day = self.getInput("Start date(yyyy-mm-dd):").split("-")
@@ -49,10 +44,9 @@ class OrderUI(object):
         end_date = datetime(int(year), int(month), int(day)).date()
         payment = self.getInput("Payment")
 
-        new_order = Order(order_id, customer, vehicle, start_date, end_date, payment)
-        self.__order_service.addOrder(new_order)
-
-        self.__selected_order = new_order
+        self.__selected_order = self.__order_service.addOrder(
+            customer, vehicle, start_date, end_date, payment
+            )
 
     def findOrder(self):
         order_id = self.getInput("Enter order ID")
@@ -69,7 +63,7 @@ class OrderUI(object):
         message = self.__order_service.deleteOrder(selected_order)
         print(message)
 
-    def updateOrder(self, order_id, a_customer, a_vehicle):
+    def updateOrder(self, a_order, a_customer, a_vehicle):
         customer = a_customer
         vehicle = a_vehicle
         year, month, day = self.getInput("Start date(yyyy-mm-dd): ").split("-")
@@ -87,3 +81,6 @@ class OrderUI(object):
     
     def getSelected(self):
         return self.__selected_order
+
+    def confirmDate(self):
+        
