@@ -78,11 +78,10 @@ class VehicleUI:
         message = self.__vehicle_service.returnVehicle(vehicle_id)
         print(message)
     
-    def deleteVehicle(self):
-        print("Enter vehicle ID: ")
-        vehicle_id = self.getInput()
-        message = self.__vehicle_service.deleteVehicle(vehicle_id)
+    def deleteVehicle(self, selected_vehical):
+        message = self.__vehical_service.deleteVehicle(selected_vehical)
         print(message)
+        
 
     def getInput(self):
         return input()
