@@ -77,8 +77,26 @@ class MainMenu:
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
-                        self.__customer_ui.updateCustomer()
+                        if self.__selected_customer == None:
+                            print("No selected customer.")
+                            self.otherCustomerOptions()
+                        #Customer selected, user asked whether to use selected
+                                               
+                        self.__choice = self.customerConfirm()
+                        while self.__choice != "y":
+                            self.otherCustomerOptions()
+                            self.__choice = self.customerConfirm()
+                        self.__customer_ui.updateCustomer(self.__selected_customer)
                     elif self.__choice == "5":
+                        if self.__selected_customer == None:
+                            print("No selected customer.")
+                            self.otherCustomerOptions()
+                        #Customer selected, user asked whether to use selected
+                                               
+                        self.__choice = self.customerConfirm()
+                        while self.__choice != "y":
+                            self.otherCustomerOptions()
+                            self.__choice = self.customerConfirm()
                         self.__customer_ui.deleteCustomer()
                 self.__selected_customer = self.__customer_ui.getSelected()
             #Vehicle menu
