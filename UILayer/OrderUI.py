@@ -1,6 +1,7 @@
 #This is the class that handles Order menues
 from ServiceLayer.OrderService import OrderService
 from Models.Order import Order
+from datetime import datetime
 
 
 class OrderUI(object):
@@ -28,7 +29,6 @@ class OrderUI(object):
     #             self.deleteOrder()
 
     def printMenu(self):
-        print ("\n" * 100)
         print("1. New order")
         print("2. Find order")
         print("3. All orders")
@@ -36,34 +36,48 @@ class OrderUI(object):
         print("5. Delete order")
 
     def newOrder(self, a_customer, a_vehicle):
+        if self.__selected_order == None:
+            order_id = "1"
+        else:
+            order_id = self.__selected_order.getID() + 1
+
         customer = a_customer
         vehicle = a_vehicle
-        start_date = self.getInput("Start date(yyyy/mm/dd): ")
-        end_date = self.getInput("End date(yyyy/mm/dd): ")
+        year, month, day = self.getInput("Start date(yyyy-mm-dd):").split("-")
+        start_date = datetime(int(year), int(month), int(day)).isoformat()
+        year, month, day = self.getInput("End date(yyyy-mm-dd):").split("-")
+        end_date = datetime(int(year), int(month), int(day)).isoformat()
         payment = self.getInput("Payment")
 
-        new_order = Order(id, customer, vehicle, start_date, end_date, payment)
+        new_order = Order(order_id, customer, vehicle, start_date, end_date, payment)
         self.__order_service.addOrder(new_order)
 
         self.__selected_order = new_order
 
-    def findOrder(self, order_id):
-        self.__selected_order = self.__order_service.findOrder(order_id)
+    def findOrder(self, selected_order):
+        self.__selected_order = self.__order_service.findOrder(selected_order)
         print(self.__selected_order)
         
 
     def allOrders(self):
         self.__order_service.getOrders()
 
-    def deleteOrder(self):
-        pass
+    def deleteOrder(self, selected_order):
+        message = self.__order_service.deleteOrder(selected_order)
+        print(message)
 
-    def updateOrder(self):
-        customer = self.getInput("Customer: ")
-        vehicle = self.getInput("Vehicle: ")
-        start_date = self.getInput("Start date(yyyy/mm/dd): ")
-        end_date = self.getInput("End date(yyyy/mm/dd): ")
+    def updateOrder(self, a_customer, a_vehicle, selected_order):
+        customer = a_customer
+        vehicle = a_vehicle
+        year, month, day = self.getInput("Start date(yyyy-mm-dd): ").split("-")
+        start_date = datetime(year, month, day)
+        year, month, day = self.getInput("End date(yyyy-mm-dd): ").split("-") 
+        end_date = datetime(year, month, day)
         payment = self.getInput("Payment")
+
+        self.__order_service.updateOrder(
+            customer, vehicle, start_date, end_date, payment
+            )
 
     def getInput(self, prompt=""):
         return input(prompt)

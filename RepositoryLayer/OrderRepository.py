@@ -7,7 +7,7 @@ class OrderRepository(object):
         self.__orders = []
 
     def addOrder(self, order):
-        with open("./Data/orders.txt" "a+") as order_file:
+        with open("./Data/orders.txt", "a+") as order_file:
             order_id = order.getID()
             customer = order.getCustomer()
             vehicle = order.getVehicle()
