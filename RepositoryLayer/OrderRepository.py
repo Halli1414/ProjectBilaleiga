@@ -15,9 +15,8 @@ class OrderRepository(object):
             vehicle = order.getVehicle()
             order_start_date = order.getOrderStartDate()
             order_end_date = order.getOrderEndDate()
-            payment = order.getPayment()
-            order_file.write("{},{},{},{},{},{}\n".format(
-                order_id, customer, vehicle, order_start_date, order_end_date, payment
+            order_file.write("{},{},{},{},{}\n".format(
+                order_id, customer, vehicle, order_start_date, order_end_date
                 ))
 
     def getOrders(self):
@@ -25,11 +24,11 @@ class OrderRepository(object):
             with open("./Data/orders.txt", "r") as order_file:
                 for line in order_file.readlines():
                     line.strip("\n")
-                    order_id, customer, vehicle, order_start_date, order_end_date, payment = line.split(",")
+                    order_id, customer, vehicle, order_start_date, order_end_date = line.split(",")
                     customer_obj = self.customerToOject(customer)
                     vehicle_obj = self.vehicleToObject(vehicle)
                     new_order = Order(
-                        order_id, customer_obj, vehicle_obj, order_start_date, order_end_date, payment
+                        order_id, customer_obj, vehicle_obj, order_start_date, order_end_date
                     )
                     self.__orders.append(new_order)
         return self.__orders

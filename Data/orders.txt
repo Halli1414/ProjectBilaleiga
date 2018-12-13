@@ -1,1 +1,1 @@
-1,Halldor;1234561234;halli@email.com;1234567;HR,Honda;FC567;CRV;Black;40000;1;1,2018-12-20,2018-12-29,yes
+1,Halld�r;1234567890;halli@email.com;5812345;HR,Toyota;1234;Yaris;Blue;100;1;1,2018-12-13,2018-12-19

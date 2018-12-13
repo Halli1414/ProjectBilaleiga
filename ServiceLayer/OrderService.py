@@ -19,11 +19,11 @@ class OrderService(object):
         next_id += 1
         return str(next_id)
 
-    def addOrder(self, customer, vehicle, start_date, end_date, payment):
+    def addOrder(self, customer, vehicle, start_date, end_date):
 
         order_id = self.getNextOrderID()
 
-        new_order = Order(order_id, customer, vehicle, start_date, end_date, payment)
+        new_order = Order(order_id, customer, vehicle, start_date, end_date)
         self.__order_repo.addOrder(new_order)
         self.refresh_orders_list()
         return new_order
