@@ -1,7 +1,7 @@
-Honda,Crv,FC345,blue,100000,available,1
-Hundai,I30,VG345,red,120000,unavailable,1
-Toyota,auris,HA345,silver,90000,unavailable,3
-Kia,Crv,MS345,gold,50000,available,2
-Honda,Crv,GT345,green,70000,available,2
-Ford,GT,ER345,blue,65000,unavailable,1
-FC567,CRV,Honda,Black,40000,available,1
+Honda,Crv,FC345,blue,100000,1,1
+Hundai,I30,VG345,red,120000,2,1
+Toyota,auris,HA345,silver,90000,2,3
+Kia,Crv,MS345,gold,50000,1,2
+Honda,Crv,GT345,green,70000,1,2
+Ford,GT,ER345,blue,65000,2,1
+FC567,CRV,Honda,Black,40000,1,1

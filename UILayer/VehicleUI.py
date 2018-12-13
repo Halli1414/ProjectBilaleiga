@@ -28,7 +28,6 @@ class VehicleUI:
                 self.addVehicle() 
 
     def printMenu(self):
-        print("\n"*100)
         print("1.Find vehicle")
         print("2.All vehicles")
         print("3.All available")
@@ -44,7 +43,9 @@ class VehicleUI:
 
 
     def allVehicles(self):
-        self.__vehicle_service.getVehicle()
+        vehicles = self.__vehicle_service.getVehicle()
+        for vehicle in vehicles:
+            print(vehicle)
 
     def allAvailable(self):
         availableVehicles = self.__vehicle_service.allAvailable()

@@ -38,11 +38,12 @@ class MainMenu:
                         self.__choice = self.customerConfirm()
                         while self.__choice != "y":
                             self.otherCustomerOptions()
-                            self.customerConfirm()
+                            self.__choice = self.customerConfirm()
 
                         print("Vehicle category(1/2/3)?")
                         category = self.getInput().lower()
                         self.__selected_vehicle = self.__vehicle_ui.getNextAvailable(category)
+                        print(self.__selected_vehicle)
                         self.__order_ui.newOrder(
                             self.__selected_customer, self.__selected_vehicle
                             )
@@ -56,10 +57,12 @@ class MainMenu:
                         self.__order_ui.allOrders()
                     #Update order
                     elif self.__choice == "4":
-                        self.__order_ui.updateOrder()
+                        self.__order_ui.updateOrder(
+                            self.__selected_customer, self.__selected_vehicle, self.__selected_order
+                            )
                     #Delete order
                     elif self.__choice == "5":
-                        self.__order_ui.deleteOrder()
+                        self.__order_ui.deleteOrder(self.__selected_order.getID)
                 self.__selected_order = self.__order_ui.getSelected()
             #Customer menu
             elif self.__choice == "2":
@@ -117,7 +120,14 @@ class MainMenu:
         elif choice == "l":
             self.__customer_ui.allCustomer()
 
+        self.refresh_selected()
+
     def customerConfirm(self):
         print(self.__selected_customer)
         print("Use selected customer?(Y/N)")
         return input().lower()
+
+    def refresh_selected(self):
+        self.__selected_customer = self.__customer_ui.getSelected()
+        self.__selected_vehicle = self.__vehicle_ui.getSelected()
+        self.__selected_order = self.__order_ui.getSelected()
