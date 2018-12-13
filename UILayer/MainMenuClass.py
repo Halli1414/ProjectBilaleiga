@@ -141,9 +141,9 @@ class MainMenu:
         if choice == "1":
             self.addOrder()
         elif choice == "2":
-            self.__order_ui.findOrder()
+            self.findOrder()
         elif choice == "3":
-            self.__order_ui.allOrders()
+            self.allOrders()
 
     def customerConfirm(self):
         if self.__selected_customer == None:
@@ -159,7 +159,7 @@ class MainMenu:
             choice = self.customerConfirm()
             if choice.lower() == "q":
                 break
-            return choice
+        return choice
         
     def vehicleConfirm(self):
         if self.__selected_vehicle == None:
@@ -191,6 +191,8 @@ class MainMenu:
             choice = self.orderComfirm()
             if choice.lower() == "q":
                 break
+        self.__selected_customer = self.__selected_order.getCustomer()
+        self.__selected_vehicle = self.__selected_order.getVehicle()
         return choice
 
     def getNextAvailableVehicle(self):
@@ -204,23 +206,19 @@ class MainMenu:
         self.__selected_order = self.__order_ui.getSelected()
 
     def addOrder(self):         
-        self.__choice = self.customerConfirm()
-        while self.__choice != "y":
-            self.otherCustomerOptions()
-            self.__choice = self.customerConfirm()
-
-        self.getNextAvailableVehicle()
-        print(self.__selected_vehicle)
-
+        self.customerConfirm()
+        self.vehicleConfirm()
         self.__order_ui.newOrder(
             self.__selected_customer, self.__selected_vehicle
             )
+        self.__selected_order = self.__order_ui.getSelected()
         # self.__vehicle_ui.changeVehicleStatus(
         #     self.__selected_vehicle.getID(), "2"
         #     )
 
     def findOrder(self):
         self.__order_ui.findOrder()
+        self.__selected_order = self.__order_ui.getSelected()
 
     def allOrders(self):
         self.__order_ui.allOrders()
@@ -231,7 +229,7 @@ class MainMenu:
         self.vehicleConfirm()
 
         self.__order_ui.updateOrder(
-            self.__selected_order.getID(), self.__selected_customer, self.__selected_vehicle
+            self.__selected_order, self.__selected_customer, self.__selected_vehicle
             )
 
     def deleteOrder(self):
