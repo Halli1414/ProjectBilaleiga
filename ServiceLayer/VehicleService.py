@@ -44,12 +44,13 @@ class VehicleService(object):
     
     def returnVehicle(self):
         returnVehicle = None
-        print("hello") 
         for vehicle in self.__vehicles:
-            returnVehicle = input("ID: ")
-            if returnVehicle == "2":
-                returnVehicle = "1"
-            elif returnVehicle == "1":
+            vehicle = input("ID: ")
+            if vehicle.getVehicleStatus == "2":
+                vehicle = "1"
+                returnVehicle = vehicle
+            elif vehicle == "1":
+                returnVehicle = vehicle
                 print("Vehicle is already available")
 
 
