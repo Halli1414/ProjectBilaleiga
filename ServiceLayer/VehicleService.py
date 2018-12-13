@@ -42,15 +42,15 @@ class VehicleService(object):
                     return_vehicle = vehicle
         return return_vehicle
     
-    def returnVehicle(self):
+    def returnVehicle(self, vehicle_id):
         returnVehicle = None
-        print("hello") 
         for vehicle in self.__vehicles:
-            returnVehicle = input("ID: ")
-            if returnVehicle == "2":
-                returnVehicle = "1"
-            elif returnVehicle == "1":
-                print("Vehicle is already available")
+            if vehicle.getID() == vehicle_id:
+                if vehicle.getVehicleStatus() == "2":
+                    vehicle.setVehicleStatus("1")
+                    return "Vehicle status has been updated"
+                elif vehicle.getVehicleStatus() == "1":
+                    return "Vehicle is already available"
 
 
 

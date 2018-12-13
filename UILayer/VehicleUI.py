@@ -1,4 +1,3 @@
-
 from ServiceLayer.VehicleService import VehicleService
 from Models.Vehicle import Vehicle
 
@@ -71,7 +70,10 @@ class VehicleUI:
         self.__vehicle_service.addVehicle(new_vehicle)
 
     def returnVehicle(self):
-        return self.__vehicle_service.returnVehicle()
+        print("Enter vehicle ID:")
+        vehicle_id = self.getInput()
+        message = self.__vehicle_service.returnVehicle(vehicle_id)
+        print(message)
 
     def getInput(self):
         return input()
