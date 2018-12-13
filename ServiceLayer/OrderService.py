@@ -20,10 +20,10 @@ class OrderService(object):
         else:
             return self.__orders[-1].getID()
 
-    def findOrder(self, selected_order):
+    def findOrder(self, order_id):
         return_order = None
         for order in self.__orders:
-            if order.getID() == selected_order.getID():
+            if order.getID() == order_id:
                 return_order = order
         return return_order
 

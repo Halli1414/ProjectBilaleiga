@@ -40,23 +40,24 @@ class MainMenu:
                             self.otherCustomerOptions()
                             self.__choice = self.customerConfirm()
 
-                        print("Vehicle category(1/2/3)?")
-                        category = self.getInput().lower()
-                        self.__selected_vehicle = self.__vehicle_ui.getNextAvailable(category)
+                        self.getNextAvailableVehicle()
                         print(self.__selected_vehicle)
+                        
                         self.__order_ui.newOrder(
                             self.__selected_customer, self.__selected_vehicle
                             )
-
+                        # self.__vehicle_ui.changeVehicleStatus(
+                        #     self.__selected_vehicle.getID(), "2"
+                        #     )
                     #Find order
                     elif self.__choice == "2":
-                        search = self.getInput("Enter order ID")
-                        self.__order_ui.findOrder(search)
+                        self.__order_ui.findOrder()
                     #All orders
                     elif self.__choice == "3":
                         self.__order_ui.allOrders()
                     #Update order
                     elif self.__choice == "4":
+                        
                         self.__order_ui.updateOrder(
                             self.__selected_customer, self.__selected_vehicle, self.__selected_order
                             )
@@ -124,10 +125,32 @@ class MainMenu:
 
         self.refresh_selected()
 
+    def otherVehicleOption(self):
+        print("1. Get next avaliable")
+        print("2. Find specific")
+        
+        choice = self.getInput().lower()
+        if choice == "1":
+            self.getNextAvailableVehicle()
+        elif choice == "2":
+            #self.__selected_vehicle = self.__vehicle_ui.findVehicles()
+
+
     def customerConfirm(self):
         print(self.__selected_customer)
         print("Use selected customer?(Y/N)")
         return input().lower()
+
+    def vehicleConfirm(self):
+        print(self.__selected_vehicle)
+        print("Use selected vehicle?(Y/N)")
+        return input().lower()
+
+    def getNextAvailableVehicle():
+        print("Vehicle category(1/2/3)?")
+        category = self.getInput().lower()
+        self.__selected_vehicle = 
+        self.__vehicle_ui.getNextAvailable(category)
 
     def refresh_selected(self):
         self.__selected_customer = self.__customer_ui.getSelected()

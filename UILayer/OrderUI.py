@@ -54,7 +54,8 @@ class OrderUI(object):
 
         self.__selected_order = new_order
 
-    def findOrder(self, order_id):
+    def findOrder(self):
+        order_id = self.getInput("Enter order ID")
         self.__selected_order = self.__order_service.findOrder(order_id)
         print(self.__selected_order)
         
@@ -72,9 +73,9 @@ class OrderUI(object):
         customer = a_customer
         vehicle = a_vehicle
         year, month, day = self.getInput("Start date(yyyy-mm-dd): ").split("-")
-        start_date = datetime(year, month, day)
+        start_date = datetime(int(year), int(month), int(day)).date()
         year, month, day = self.getInput("End date(yyyy-mm-dd): ").split("-") 
-        end_date = datetime(year, month, day)
+        end_date = datetime(int(year), int(month), int(day)).date()
         payment = self.getInput("Payment")
 
         self.__order_service.updateOrder(
