@@ -31,3 +31,10 @@ class CustomerService:
                 self.__customers.pop(i)
                 self.__customer_repo.deleteCustomer(self.__customers)
     
+    def updateCustomer(self, a_customer, name, phone, address, email):
+        for customer in self.__customers:
+            if customer.getID() == a_customer.getID():
+                customer.setName(name)
+                customer.setPhone(phone)
+                customer.setAddress(address)
+                customer.setEmail(email)
