@@ -69,7 +69,7 @@ class OrderUI(object):
         message = self.__order_service.deleteOrder(selected_order)
         print(message)
 
-    def updateOrder(self, a_customer, a_vehicle, selected_order):
+    def updateOrder(self, order_id, a_customer, a_vehicle):
         customer = a_customer
         vehicle = a_vehicle
         year, month, day = self.getInput("Start date(yyyy-mm-dd): ").split("-")
@@ -79,7 +79,7 @@ class OrderUI(object):
         payment = self.getInput("Payment")
 
         self.__order_service.updateOrder(
-            customer, vehicle, start_date, end_date, payment
+            order_id, customer, vehicle, start_date, end_date, payment
             )
 
     def getInput(self, prompt=""):
