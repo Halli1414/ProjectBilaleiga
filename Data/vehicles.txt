@@ -6,3 +6,4 @@ Honda,Crv,GT345,green,70000,1,2
 Ford,GT,ER345,blue,65000,2,1
 FC567,CRV,Honda,Black,40000,1,1
 FC347,Aruis,Honda,blue,40000,1,2
+1234,Yaris,Toyota,Blue,100,1,1
