@@ -43,7 +43,6 @@ class VehicleService(object):
         return return_vehicle
     
     def returnVehicle(self, vehicle_id):
-        returnVehicle = None
         for vehicle in self.__vehicles:
             if vehicle.getID() == vehicle_id:
                 if vehicle.getVehicleStatus() == "2":
@@ -52,5 +51,12 @@ class VehicleService(object):
                 elif vehicle.getVehicleStatus() == "1":
                     return "Vehicle is already available"
 
+    def deleteVehicle(self, vehicle_id):
+        for i in range(0, len(self.__vehicles)):
+            if self.__vehicles[i].getID() == selectedVehicle.getID():
+                self.__vehicles.pop(i)
+                return "Vehicle deleted"
+            else:
+                return "Vehicle not found"
 
 
