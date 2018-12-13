@@ -38,11 +38,10 @@ class CustomerUI:
 
     def allCustomer(self):
         customers = self.__customer_service.getCustomer()
-        print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(
-            "Name", "ID", "Phone", "Address", "Email"
-            ))
+        print("{:<30} {:<20} {:<15} {:<30} {:<25}\n".format(
+            "Name", "ID", "Phone", "Address", "Email"))
         for customer in customers:
-            print(customer)
+            print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(customer.getName(), customer.getID(), customer.getPhone(), customer.getAddress(), customer.getEmail()))
 
     def updateCustomer(self, a_customer):
         name = input("Name: ")
