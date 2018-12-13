@@ -42,8 +42,9 @@ class VehicleService(object):
                     return_vehicle = vehicle
         return return_vehicle
     
-    def returnVehicle(self, id):
-        returnVehicle = None 
+    def returnVehicle(self):
+        returnVehicle = None
+        print("hello") 
         for vehicle in self.__vehicles:
             returnVehicle = input("ID: ")
             if returnVehicle == "2":

@@ -39,3 +39,14 @@ class CustomerRepository:
                 address = customer.getAddress()
                 email = customer.getEmail()
                 customer_file.write("{},{},{},{},{}\n".format(name, customer_id, phone, address, email))
+    
+    def updateFile(self, customers):
+        self.clearCustomerFile()
+        with open("./Data/customer.txt","a+") as customer_file:
+            for customer in customers:
+                name = customer.getName()
+                customer_id = customer.getID()
+                phone = customer.getPhone()
+                address = customer.getAddress()
+                email = customer.getEmail()
+                customer_file.write("{},{},{},{},{}\n".format(name, customer_id,    phone, address, email))

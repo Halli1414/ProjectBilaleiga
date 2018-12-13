@@ -59,13 +59,14 @@ class CustomerUI:
         for customer in customers:
             print(customer)
 
-    def updateCustomer(self):
+    def updateCustomer(self, a_customer):
         name = input("Name: ")
-        customer_id = input("ID: ")
-        email = input("Email: ")
         phone = input("Phone number: ")
         address = input("Address: ")
-
+        email = input("Email: ")
+        
+        self.__customer_service.updateCustomer(a_customer, name, phone, address,email)
+        
     def deleteCustomer(self):
        self.__customer_service.deleteCustomer(self.__selected_customer)
 

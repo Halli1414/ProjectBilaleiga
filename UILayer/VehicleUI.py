@@ -26,6 +26,8 @@ class VehicleUI:
                 self.allUnavailable()
             elif self.__choice == "5":
                 self.addVehicle() 
+            elif self.__choice == "6":
+                self.returnVehicle()
 
     def printMenu(self):
         print("1.Find vehicle")
@@ -35,12 +37,10 @@ class VehicleUI:
         print("5.Add vehicle")
         print("6.Return vehicle")
         
-
     def findVehicles(self):
         vehicle_id = input("ID: ")
         vehicle = self.__vehicle_service.findVehicle(vehicle_id)
         print("vehicle: ", vehicle)
-
 
     def allVehicles(self):
         vehicles = self.__vehicle_service.getVehicle()
@@ -57,8 +57,6 @@ class VehicleUI:
         for vehicle in unavailableVehicles:
             print(vehicle)
 
-
-
     def addVehicle(self):
         vehicle_id = input("ID: ")
         model = input("Model: ")
@@ -72,9 +70,8 @@ class VehicleUI:
             )
         self.__vehicle_service.addVehicle(new_vehicle)
 
-    def returnVehicle(self, id):
-        return self.__vehicle_service.returnVehicle(id)
-
+    def returnVehicle(self):
+        return self.__vehicle_service.returnVehicle()
 
     def getInput(self):
         return input()
