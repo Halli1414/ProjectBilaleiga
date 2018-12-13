@@ -9,7 +9,7 @@ class OrderUI(object):
     def __init__(self):
         self.__order_service = OrderService()
         self.__choice = ""
-        self.__selected_order = None
+        self.__selected_order = self.__order_service.getLastOrderID()
 
     # def start(self):
     #     while self.__choice != "q":
@@ -36,10 +36,10 @@ class OrderUI(object):
         print("5. Delete order")
 
     def newOrder(self, a_customer, a_vehicle):
-        if self.__selected_order == None:
-            order_id = "1"
+        if self.__order_service.getLastOrderID() == None:
+            order_id = 1
         else:
-            order_id = self.__selected_order.getID() + 1
+            order_id = self.__order_service.getLastOrderID() + 1
 
         customer = a_customer
         vehicle = a_vehicle

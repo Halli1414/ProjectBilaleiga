@@ -34,4 +34,4 @@ class Customer():
         self.__email = new_email
 
     def __str__(self):
-        return "{:<30} {:<20} {:<15} {:<30} {:<25}".format(self.__name, self.__id, self.__phone, self.__address, self.__email)
+        return "{};{};{};{};{}".format(self.__name, self.__id, self.__phone, self.__address, self.__email)

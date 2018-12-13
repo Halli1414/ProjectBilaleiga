@@ -38,7 +38,7 @@ class VehicleService(object):
         return_vehicle = None
         for vehicle in self.__vehicles:
             if vehicle.getVehicleStatus() == "1":
-                if vehicle.getCatagory() == catagory:
+                if vehicle.getCategory() == catagory:
                     return_vehicle = vehicle
         return return_vehicle
     

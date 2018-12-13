@@ -14,6 +14,12 @@ class OrderService(object):
     def getOrders(self):
         return self.__order_repo.getOrders()
 
+    def getLastOrderID(self):
+        if self.__orders == []:
+            return 0
+        else:
+            return self.__orders[-1].getID()
+
     def findOrder(self, selected_order):
         return_order = None
         for order in self.__orders:
