@@ -11,25 +11,6 @@ class VehicleUI:
     def getSelected(self):
         return self.__selectedVehicle
 
-    def start(self):
-        while self.__choice != "q":
-            self.printMenu()
-            self.__choice = self.getInput().lower()
-            if self.__choice == "1":
-                self.findVehicles()
-            elif self.__choice == "2":
-                self.allVehicles()
-            elif self.__choice == "3":
-                self.allAvailable()
-            elif self.__choice == "4":
-                self.allUnavailable()
-            elif self.__choice == "5":
-                self.addVehicle() 
-            elif self.__choice == "6":
-                self.returnVehicle()
-            elif self.__choive == "7":
-                self.deleteVehicle()
-
     def printMenu(self):
         print("1.Find vehicle")
         print("2.All vehicles")
@@ -43,6 +24,9 @@ class VehicleUI:
         vehicle_id = input("ID: ")
         vehicle = self.__vehicle_service.findVehicle(vehicle_id)
         print("vehicle: ", vehicle)
+
+    #def print(self):
+        
 
     def allVehicles(self):
         vehicles = self.__vehicle_service.getVehicle()
@@ -78,9 +62,9 @@ class VehicleUI:
         message = self.__vehicle_service.returnVehicle(vehicle_id)
         print(message)
     
-    def deleteVehicle(self, selected_vehical):
-        message = self.__vehical_service.deleteVehicle(selected_vehical)
-        print(message)
+    def deleteVehicle(self):
+        self.__vehicle_service.deleteVehicle(self.__selectedVehicle)
+        
         
 
     def getInput(self):

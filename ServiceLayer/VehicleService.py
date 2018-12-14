@@ -52,12 +52,11 @@ class VehicleService(object):
                     return "Vehicle is already available"
 
     def deleteVehicle(self, selected_vehicle):
+        self.getVehicle()
         for i in range(0, len(self.__vehicles)):
             if self.__vehicles[i].getID() == selected_vehicle.getID():
                 self.__vehicles.pop(i)
-                self.__vehicle_repo.deleteVehicle(self.__vehicles)
-                return "Vehicle deleted"
-            else:
-                return "Vehicle not found"
+                self.__vehicle_repo.clearVehicle(self.__vehicles)
+                
 
 
