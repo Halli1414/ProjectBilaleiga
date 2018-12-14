@@ -78,11 +78,12 @@ class OrderService(object):
     
     def calculateOrderFee(self, vehicle_category, start_date, end_date):
         day_difference = end_date - start_date
-        if vehicle_category == 1:
+        vehicle_price = 0
+        if vehicle_category == "1":
             vehicle_price = 5900
-        elif vehicle_category == 2:
+        elif vehicle_category == "2":
             vehicle_price = 9900
-        elif vehicle_category == 3:
+        elif vehicle_category == "3":
             vehicle_price = 12900
 
         return vehicle_price * day_difference.days

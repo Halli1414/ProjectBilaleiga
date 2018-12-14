@@ -36,7 +36,7 @@ class CustomerUI:
         self.__selected_customer = customer
         return customer
 
-    def allCustomer(self):
+    def allCustomers(self):
         customers = self.__customer_service.getCustomers()
         self.printCustomerResaults(customers)
 
@@ -97,7 +97,7 @@ class CustomerUI:
         self.printHeader()
         for i in range(1, len(a_list) + 1):
             customer_str = self.printCustomer(a_list[i-1])
-            print("{}. {}".format(i, customer_str))
+            print("{:>3}. {}".format(i, customer_str))
 
     def printCustomer(self, customer):
         return "{:.<30} {:.<20} {:.<15} {:.<30} {:<25}".format(
@@ -106,10 +106,10 @@ class CustomerUI:
             )
 
     def printCustomerResaults(self, resaults):
-        resault_list = []
+        resaults_list = []
         if type(resaults) == list:
-            resault_list = resaults
+            resaults_list = resaults
         elif type(resaults) == Customer:
-            resault_list.append(resaults)
-        self.printCustomerList(resault_list)
+            resaults_list.append(resaults)
+        self.printCustomerList(resaults_list)
 

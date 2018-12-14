@@ -23,23 +23,9 @@ class CustomerRepository:
             self.refreshCustomerList()
         return self.__customers
     
-    def clearCustomerFile(self):
-        with open("./Data/customer.txt","w") as customer_file:
-            customer_file.write("")
-
-    def deleteCustomer(self, customers):
-        self.clearCustomerFile()
-        with open("./Data/customer.txt","a+") as customer_file:
-            for customer in customer_file:
-                name = customer.getName()
-                customer_id = customer.getID()
-                phone = customer.getPhone()
-                address = customer.getAddress()
-                email = customer.getEmail()
-                customer_file.write("{},{},{},{},{}\n".format(name, customer_id, phone, address, email))
-    
     def updateCustomerFile(self, customer_list):
         str_with_customers = ""
+        self.__customers = customer_list
         with open("./Data/customer.txt","w") as customer_file:
             for customer in customer_list:
                 name = customer.getName()

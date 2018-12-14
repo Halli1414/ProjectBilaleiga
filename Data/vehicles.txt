@@ -7,4 +7,4 @@ Ford,GT,ER345,blue,65000,2,1
 Honda,CRV,FC567,Black,40000,1,1
 Toyota,Aruis,FC347,blue,40000,1,2
 Toyota,Yaris,1234,Blue,100,1,1
-GT365,CRV,Honda,Black,50000,1,2
+Nissan,Micra,DB583,black,149000,1,1

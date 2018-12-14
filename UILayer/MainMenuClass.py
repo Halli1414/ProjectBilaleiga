@@ -58,7 +58,7 @@ class MainMenu:
                         )
                     # All customer
                     elif self.__choice == "3":
-                        self.__customer_ui.allCustomer()
+                        self.__customer_ui.allCustomers()
                     # Update customer
                     elif self.__choice == "4":
                         if self.customerConfirm() != "q":
@@ -84,9 +84,10 @@ class MainMenu:
                     self.__vehicle_ui.printMenu()
                     self.__choice = self.getInput()
                     if self.__choice == "1":
-                        self.__vehicle_ui.findVehicles()
+                        self.__vehicle_ui.findVehicle()
                     elif self.__choice == "2":
-                        self.__vehicle_ui.allVehicles()
+                        resaults = self.__vehicle_ui.allVehicles()
+                        self.__vehicle_ui.printVehicleResaults(resaults)
                     elif self.__choice == "3":
                         self.__vehicle_ui.allAvailable()
                     elif self.__choice == "4":
@@ -120,7 +121,7 @@ class MainMenu:
         elif choice == "2":
             self.__customer_ui.findCustomer()
         elif choice == "3":
-            self.__customer_ui.allCustomer()
+            self.__customer_ui.allCustomers()
 
         self.__selected_customer = self.__customer_ui.getSelected()
 
@@ -130,7 +131,7 @@ class MainMenu:
         
         choice = self.getInput().lower()
         if choice == "1":
-            self.getNextAvailableVehicle()
+            self.__selected_vehicle = self.__vehicle_ui.getNextAvailableVehicle()
         elif choice == "2":
             #self.__selected_vehicle = self.__vehicle_ui.findVehicles()
             pass
@@ -199,10 +200,6 @@ class MainMenu:
         self.__selected_vehicle = self.__selected_order.getVehicle()
         return choice
 
-    def getNextAvailableVehicle(self):
-        print("Vehicle category(1/2/3)?")
-        category = self.getInput().lower()
-        self.__selected_vehicle = self.__vehicle_ui.getNextAvailable(category)
 
     def addOrder(self):         
         self.customerConfirm()
@@ -216,11 +213,12 @@ class MainMenu:
         #     )
 
     def findOrder(self):
-        self.__order_ui.findOrder()
-        self.__selected_order = self.__order_ui.getSelected()
+        self.__selected_order = self.__order_ui.findOrder()
+        self.__order_ui.printOrderResaults(self.__selected_order)
 
     def allOrders(self):
-        self.__order_ui.allOrders()
+        resaults = self.__order_ui.allOrders()
+        self.__order_ui.printOrderResaults(resaults)
 
     def updateOrder(self):
         self.orderConfirm()

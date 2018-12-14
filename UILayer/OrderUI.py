@@ -34,13 +34,11 @@ class OrderUI(object):
         order_id = self.getInput("Enter order ID")
         # Catch the order that was found and make it selected
         self.__selected_order = self.__order_service.findOrder(order_id)
-        print(self.__selected_order)
+        return self.__selected_order
         
 
     def allOrders(self):
-        orders = self.__order_service.getOrders()
-        for order in orders:
-            print(order)
+        return self.__order_service.getOrders()
 
     def deleteOrder(self, selected_order_id):
         # Message variable to print out the results, success or not
@@ -96,3 +94,31 @@ class OrderUI(object):
         month = self.getInput("Pick month. (mm)")
         day = self.getInput("Pick day. (dd)")
         return datetime(int(year), int(month), int(day)).date()
+
+    def __printHeader(self):
+        print("{:<6}{:<7}{:<20}{:<15}{:<15}{:<15}{:<15}".format(
+            "No", "ID", "Customer", "Vehicle", "Start Date", "End Date", "Fee"
+        ))
+
+    def __printOrderList(self, order_list):
+        self.__printHeader()
+        for i in range(0, len(order_list)):
+            print("{:>4}. {}".format(i+1, self.__printOrder(order_list[i])))
+
+    def __printOrder(self, order):
+        order_customer_id = order.getCustomer().getID()
+        order_vehicle_id = order.getVehicle().getID()
+        order_fee = str(order.getOrderFee())
+        return "{:.<7}{:.<20}{:.<15}{:.<15}{:.<15}{:<15}".format(
+            order.getID(), order_customer_id, order_vehicle_id,
+            order.getOrderStartDate(), order.getOrderEndDate(),
+            order_fee
+            )
+
+    def printOrderResaults(self, resaults):
+        resaults_list = []
+        if type(resaults) == list:
+            resaults_list = resaults
+        elif type(resaults) == Order:
+            resaults_list.append(resaults)
+        self.__printOrderList(resaults_list)

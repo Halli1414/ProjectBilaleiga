@@ -26,17 +26,17 @@ class CustomerService:
             if customer.getID() == customer_id:
                 return customer
     
-    def deleteCustomer(self, selected_customer):
+    def deleteCustomer(self, customer_id):
         self.getCustomers()
         for i in range(0,len(self.__customers)):
-            if self.__customers[i].getID() == selected_customer.getID():
+            if self.__customers[i].getID() == customer_id:
                 self.__customers.pop(i)
                 self.__customer_repo.updateCustomerFile(self.__customers)
     
     def updateCustomer(self, customer_id, name, phone, address, email):
         self.getCustomers()
         for customer in self.__customers:
-            if customer.getID() == customer_id():
+            if customer.getID() == customer_id:
                 customer.setName(name)
                 customer.setPhone(phone)
                 customer.setAddress(address)

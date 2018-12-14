@@ -26,13 +26,8 @@ class VehicleUI:
         self.__selected_vehicle = vehicle
         return vehicle
 
-    #def print(self):
-        
-
     def allVehicles(self):
-        vehicles = self.__vehicle_service.getVehicle()
-        for vehicle in vehicles:
-            print(vehicle)
+        return self.__vehicle_service.getVehicles()
 
     def allAvailable(self):
         availableVehicles = self.__vehicle_service.allAvailable()
@@ -46,14 +41,14 @@ class VehicleUI:
 
     def addVehicle(self):
         vehicle_id = input("ID: ")
-        model = input("Model: ")
         manufacturer = input("Manufacturer: ")
+        model = input("Model: ")
         color = input("Color: ")
         vehicleStatus = input("VehicleStatus: ")
         kilometers = input("Kilometers: ")
         category = input("Category: ")
         new_vehicle = Vehicle(
-            vehicle_id, model, manufacturer, color, vehicleStatus, kilometers, category
+            manufacturer, model, vehicle_id, color, vehicleStatus, kilometers, category
             )
         self.__vehicle_service.addVehicle(new_vehicle)
 
@@ -107,3 +102,44 @@ class VehicleUI:
         self.__selected_vehicle = self.__vehicle_service.getNextAvailable(
             category
             )
+        return self.__selected_vehicle
+
+    def printVehicleHeader(self):
+        print("{:.<10}{:.<20}{:.<20}{:.<10}{:.<15}{:.<5}{:<5}".format(
+            "ID", "Manufacturer", "Model", "Color", "Kilometers", "Status", "Category"
+            ))
+
+    def printVehicleList(self, vehicle_list):
+        self.printVehicleHeader()
+        for i in range(0, len(vehicle_list)):
+            print("{:>3}. {}".format(i+1, self.printVehicle(vehicle_list[i])))
+    
+    def printVehicle(self, vehicle):
+
+        status = self.parseStatus(vehicle.getVehicleStatus())
+        category = self.parseCategory(vehicle.getCategory())
+        return "{:.<10}{:.<20}{:.<20}{:.<10}{:.<15}{:.<5}{:<5}".format(
+            vehicle.getID(), vehicle.getManufacturer(), vehicle.getModel(), vehicle.getColor(), vehicle.getKilometers(), status, category
+            )
+
+    def printVehicleResaults(self, resaults):
+        resaults_list = []
+        if type(resaults) == list:
+            resaults_list = resaults
+        elif type(resaults) == Vehicle:
+            resaults_list.append(resaults)
+        self.printVehicleList(resaults_list)
+
+    def parseCategory(self, category):
+        if category == "1":
+            return "Small"
+        elif category == "2":
+            return "Medium"
+        elif category == "3":
+            return "Large"
+
+    def parseStatus(self, status):
+        if status == "1":
+            return "Avaliable"
+        elif status == "2":
+            return "Unavailble"
