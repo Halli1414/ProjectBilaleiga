@@ -93,7 +93,8 @@ class OrderUI(object):
         year = self.getInput("Pick year. (yyyy)")
         month = self.getInput("Pick month. (mm)")
         day = self.getInput("Pick day. (dd)")
-        return datetime(int(year), int(month), int(day)).date()
+        date = datetime(int(year), int(month), int(day)).date()
+        return date
 
     def __printHeader(self):
         print("\n" * 100)
@@ -110,10 +111,14 @@ class OrderUI(object):
     def __printOrder(self, order):
         order_customer_id = order.getCustomer().getID()
         order_vehicle_id = order.getVehicle().getID()
+        start_date = order.getOrderStartDate()
+        start_date = start_date.strftime("%y-%m-%d")
+        end_date = order.getOrderEndDate()
+        end_date = end_date.strftime("%y-%m-%d")
         order_fee = str(order.getOrderFee())
         return "{:.<7}{:.<20}{:.<15}{:.<15}{:.<15}{:<15}".format(
             order.getID(), order_customer_id, order_vehicle_id,
-            order.getOrderStartDate(), order.getOrderEndDate(),
+            start_date, end_date,
             order_fee
             )
 

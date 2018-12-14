@@ -89,9 +89,14 @@ class CustomerUI:
         return input(prompt)
 
     def printHeader(self):
+<<<<<<< HEAD
         print("\n" * 100)
         print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(
             "Name", "ID", "Phone", "Address", "Email"
+=======
+        print("{:<5}{:<30} {:<20} {:<15} {:<30} {:<25}\n".format(
+            "NO.","Name", "ID", "Phone", "Address", "Email"
+>>>>>>> 8fb30469d0f0f2b9ddebcb580fad4689c2c5cd23
             ))
 
     def printCustomerList(self, a_list):
