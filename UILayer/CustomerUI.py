@@ -38,8 +38,7 @@ class CustomerUI:
 
     def allCustomer(self):
         customers = self.__customer_service.getCustomers()
-        self.printHeader()
-        self.printCustomerList(customers)
+        self.printCustomerResaults(customers)
 
     def updateCustomer(self, selected_customer):
         # Initialize values
@@ -95,7 +94,22 @@ class CustomerUI:
             ))
 
     def printCustomerList(self, a_list):
-        for customer in a_list:
-            print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(
-                customer.getName(), customer.getID(), customer.getPhone(), customer.getAddress(), customer.getEmail()
-                ))
+        self.printHeader()
+        for i in range(1, len(a_list) + 1):
+            customer_str = self.printCustomer(a_list[i-1])
+            print("{}. {}".format(i, customer_str))
+
+    def printCustomer(self, customer):
+        return "{:.<30} {:.<20} {:.<15} {:.<30} {:<25}".format(
+            customer.getName(), customer.getID(), customer.getPhone(),
+            customer.getAddress(), customer.getEmail()
+            )
+
+    def printCustomerResaults(self, resaults):
+        resault_list = []
+        if type(resaults) == list:
+            resault_list = resaults
+        elif type(resaults) == Customer:
+            resault_list.append(resaults)
+        self.printCustomerList(resault_list)
+

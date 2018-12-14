@@ -2,10 +2,6 @@ from UILayer.CustomerUI import CustomerUI
 from UILayer.OrderUI import OrderUI
 from UILayer.VehicleUI import VehicleUI
 
-from ServiceLayer.CustomerService import CustomerService
-from ServiceLayer.OrderService import OrderService
-from ServiceLayer.VehicleService import VehicleService
-
 # This is the ui class that handles all of the menus
 
 class MainMenu:
@@ -51,30 +47,25 @@ class MainMenu:
                 while self.__choice != "q":
                     self.__customer_ui.printMenu()
                     self.__choice = self.getInput()
+                    # New customer
                     if self.__choice == "1":
                         self.__customer_ui.newCustomer()
+                    # Find customer
                     elif self.__choice == "2": 
-                        self.__customer_ui.findCustomer()
+                        self.__selected_customer = self.__customer_ui.findCustomer()
+                        self.__customer_ui.printCustomerResaults(
+                            self.__selected_customer
+                        )
+                    # All customer
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
+                    # Update customer
                     elif self.__choice == "4":
-<<<<<<< HEAD
-                        self.customerConfirm()
-                        self.__customer_ui.updateCustomer(
-                            self.__selected_customer
-                            )
-=======
-                        if self.__selected_customer == None:
-                            print("No selected customer.")
-                            self.otherCustomerOptions()
-                        #Customer selected, user asked whether to use selected
-                                               
-                        self.__choice = self.customerConfirm()
-                        while self.__choice != "y":
-                            self.otherCustomerOptions()
-                            self.__choice = self.customerConfirm()
-                        self.__customer_ui.updateCustomer(self.__selected_customer)
->>>>>>> 6c80f2aa422bc5718fcffe82ecbb765b59eb31cd
+                        if self.customerConfirm() != "q":
+                            self.__customer_ui.updateCustomer(
+                                self.__selected_customer
+                                )
+                    # Delete customer
                     elif self.__choice == "5":
                         if self.__selected_customer == None:
                             print("No selected customer.")
@@ -166,11 +157,12 @@ class MainMenu:
         print("Use selected customer?(Y/N)")
                 
         choice = self.getInput().lower()
-        while choice != "y":
-            self.otherCustomerOptions()
-            choice = self.customerConfirm()
-            if choice.lower() == "q":
-                break
+        if choice != "q":
+            while choice != "y":
+                self.otherCustomerOptions()
+                choice = self.customerConfirm()
+                if choice.lower() == "q":
+                    break
         return choice
         
     def vehicleConfirm(self):
