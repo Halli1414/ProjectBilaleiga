@@ -94,6 +94,8 @@ class MainMenu:
                         self.__vehicle_ui.addVehicle()
                     elif self.__choice == "6":
                         self.__vehicle_ui.returnVehicle()
+                    elif self.__choice == "7":
+                        self.__vehicle_ui.deleteVehicle()
                 self.__selected_vehicle = self.__vehicle_ui.getSelected()
 
     def getInput(self, prompt=""):
