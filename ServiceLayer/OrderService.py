@@ -9,8 +9,13 @@ class OrderService(object):
         self.__orders = self.__order_repo.getOrders()
 
     def getLastOrderID(self):
+        # Get the lates list
+        self.getOrders()
+
+        # Check if list is empty
         if self.__orders == []:
             return 0
+        # Return the last elements ID
         else:
             return self.__orders[-1].getID()
 
@@ -19,17 +24,18 @@ class OrderService(object):
         next_id += 1
         return str(next_id)
 
-    def addOrder(self, customer, vehicle, start_date, end_date, payment):
+    def addOrder(self, customer, vehicle, start_date, end_date):
 
         order_id = self.getNextOrderID()
 
-        new_order = Order(order_id, customer, vehicle, start_date, end_date, payment)
+        new_order = Order(order_id, customer, vehicle, start_date, end_date)
         self.__order_repo.addOrder(new_order)
-        self.refresh_orders_list()
+        self.getOrders()
         return new_order
 
     def getOrders(self):
-        return self.__order_repo.getOrders()
+        self.__orders =  self.__order_repo.getOrders()
+        return self.__orders
 
 
 
@@ -41,25 +47,30 @@ class OrderService(object):
         return return_order
 
     def updateOrder(
-        self, order_id, customer, vehicle, start_date, end_date, payment=""
+        self, order_id, customer, vehicle, start_date, end_date
         ):
+
+        self.getOrders()
 
         for order in self.__orders:
             if order.getID() == order_id:
                 order.setCustomer(customer)
-                order.setVeicle(vehicle)
+                order.setVehicle(vehicle)
                 order.setOrderStartDate(start_date)
                 order.setOrderEndDate(end_date)
-                order.setPayment(payment)
 
-                return "Order successfully updated"
-    def deleteOrder(self, selected_order):
+                self.__order_repo.updateOrderFile(self.__orders)
+                self.getOrders()
+                return "Order: {} successfully updated".format(order_id)
+
+        return "Order ID: {} not found".format(order_id)
+
+    def deleteOrder(self, selected_order_id):
+        self.getOrders()
         for i in range(0, len(self.__orders)):
-            if self.__orders[i].getID() == selected_order.getID():
+            if self.__orders[i].getID() == selected_order_id:
                 self.__orders.pop(i)
-                return "Order deleted"
-            else:
-                return "Order not found"
-
-    def refresh_orders_list(self):
-        self.__orders = self.__order_repo.getOrders()
+                self.__order_repo.updateOrderFile(self.__orders)
+                return "Order ID: {} deleted".format(selected_order_id)
+        
+        return "Order ID: {} not found".format(selected_order_id)

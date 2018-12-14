@@ -16,8 +16,9 @@ class CustomerService:
         #Setja inn kóða
         return True
     
-    def getCustomer(self):
-        return self.__customer_repo.getCustomer()
+    def getCustomers(self):
+        self.__customers = self.__customer_repo.getCustomer()
+        return self.__customers
 
     def findCustomer(self, customer_id):
 
@@ -26,15 +27,23 @@ class CustomerService:
                 return customer
     
     def deleteCustomer(self, selected_customer):
+        self.getCustomers()
         for i in range(0,len(self.__customers)):
             if self.__customers[i].getID() == selected_customer.getID():
                 self.__customers.pop(i)
-                self.__customer_repo.deleteCustomer(self.__customers)
+                self.__customer_repo.updateCustomerFile(self.__customers)
     
-    def updateCustomer(self, a_customer, name, phone, address, email):
+    def updateCustomer(self, customer_id, name, phone, address, email):
+        self.getCustomers()
         for customer in self.__customers:
-            if customer.getID() == a_customer.getID():
+            if customer.getID() == customer_id():
                 customer.setName(name)
                 customer.setPhone(phone)
                 customer.setAddress(address)
                 customer.setEmail(email)
+                self.__customer_repo.updateCustomerFile(self.__customers)
+                self.getCustomers()
+                return "Customer ID: {} successfully updated".format(
+                    customer_id
+                    )
+        return "Customer ID: {} not found".format(customer_id)
