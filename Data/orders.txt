@@ -1,1 +1,3 @@
-1,Halldor;1234561234;halli@email.com;1234567;HR,Honda;FC567;CRV;Black;40000;1;1,2018-12-20,2018-12-29,yes
+1,Geiri;0099887766;geiri@email.com;7878123;HR,FC347;Aruis;Honda;blue;40000;1;2,2018-12-13,2018-12-19
+2,Halld�r;1234567890;halli@email.com;5812345;HR,Yaris;Toyota;1234;Blue;100;1;1,2018-12-16,2018-12-19
+4,�orri;1122334455;thorri@email.com;7775555;HR,Toyota;1234;Yaris;Blue;100;1;1,2019-01-03,2019-01-13

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 epijfsdfds,fdsfsdf,dsfsd,fds,fsdf
 dsfds,f,dsf,ds,fds
 dsada,sd,sa,dsa,das
 john mcclane,1234561234,mcclane@email.com,1234567,new york
 malcolm,1234123456,hi@gmail.com,1231234,teigur
+=======
+Halldór,12345667890,halli@email.com,5812345,HR
+>>>>>>> d09f9d7e8ff3c9bb64ed46ec2d6d115da9d1ae49
