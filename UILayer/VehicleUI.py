@@ -6,10 +6,10 @@ class VehicleUI:
     def __init__(self):
         self.__vehicle_service = VehicleService()
         self.__choice = ""
-        self.__selectedVehicle = None
+        self.__selected_vehicle = None
 
     def getSelected(self):
-        return self.__selectedVehicle
+        return self.__selected_vehicle
 
     def printMenu(self):
         print("1.Find vehicle")
@@ -20,10 +20,11 @@ class VehicleUI:
         print("6.Return vehicle")
         print("7.Delete vehicle")
         
-    def findVehicles(self):
+    def findVehicle(self):
         vehicle_id = input("ID: ")
         vehicle = self.__vehicle_service.findVehicle(vehicle_id)
-        print("vehicle: ", vehicle)
+        self.__selected_vehicle = vehicle
+        return vehicle
 
     #def print(self):
         
@@ -63,12 +64,46 @@ class VehicleUI:
         print(message)
     
     def deleteVehicle(self):
-        self.__vehicle_service.deleteVehicle(self.__selectedVehicle)
+        if self.vehicleConfirm() != "q":
+            self.__vehicle_service.deleteVehicle(self.__selected_vehicle)
         
         
 
     def getInput(self):
         return input()
     
-    def getNextAvailable(self, category):
-        return self.__vehicle_service.getNextAvailable(category)
+    
+    def vehicleConfirm(self):
+        if self.__selected_vehicle == None:
+            print("No selected Vehicle.")
+            self.otherVehicleOptions()
+        
+        print(self.__selected_vehicle)
+        print("Use selected vehicle?(Y/N)")
+
+        choice = self.getInput().lower()
+        while choice != "y":
+            self.otherVehicleOptions()
+            choice = self.vehicleConfirm()
+
+        return choice
+
+    def otherVehicleOptions(self):
+        print("1. Get next avaliable")
+        print("2. Find specific")
+        print("3. List all vehicles")
+        
+        choice = self.getInput().lower()
+        if choice == "1":
+            self.getNextAvailableVehicle()
+        elif choice == "2":
+            self.findVehicle()
+        elif choice == "3":
+            self.allVehicles()
+
+    def getNextAvailableVehicle(self):
+        print("Vehicle category(1/2/3)?")
+        category = self.getInput().lower()
+        self.__selected_vehicle = self.__vehicle_service.getNextAvailable(
+            category
+            )
