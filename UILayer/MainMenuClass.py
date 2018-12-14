@@ -58,7 +58,10 @@ class MainMenu:
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
-                        self.__customer_ui.updateCustomer()
+                        self.customerConfirm()
+                        self.__customer_ui.updateCustomer(
+                            self.__selected_customer
+                            )
                     elif self.__choice == "5":
                         if self.__selected_customer == None:
                             print("No selected customer.")

@@ -1,1 +1,1 @@
-Halldór,12345667890,halli@email.com,5812345,HR
+Halldór,1234567890,5812345,HÍ,halli@email.com
