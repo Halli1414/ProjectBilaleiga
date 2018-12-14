@@ -58,7 +58,16 @@ class MainMenu:
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
-                        self.__customer_ui.updateCustomer()
+                        if self.__selected_customer == None:
+                            print("No selected customer.")
+                            self.otherCustomerOptions()
+                        #Customer selected, user asked whether to use selected
+                                               
+                        self.__choice = self.customerConfirm()
+                        while self.__choice != "y":
+                            self.otherCustomerOptions()
+                            self.__choice = self.customerConfirm()
+                        self.__customer_ui.updateCustomer(self.__selected_customer)
                     elif self.__choice == "5":
                         if self.__selected_customer == None:
                             print("No selected customer.")
@@ -104,9 +113,9 @@ class MainMenu:
         print("(3) Vehicles")
 
     def otherCustomerOptions(self):
-        print("1. Register new customer(N)")
-        print("2. Find customer(F)")
-        print("3. List all customers(L)")
+        print("1. Register new customer")
+        print("2. Find customer")
+        print("3. List all customers")
         choice = self.getInput().lower()
         if choice == "1":
             self.__customer_ui.newCustomer()
