@@ -26,4 +26,22 @@ class VehicleRepository:
                     self.__Vehicle.append(new_Vehicle)
         return self.__Vehicle
 
+    def clearVehicle(self):
+        with open("./Data/vehicles.txt","w") as vehicle_file:
+            vehicle_file.write("")
+
+    def deleteVehicle(self, Vehicle):
+        self.clearVehicle()
+        with open("./Data/vehicles.txt","a+") as vehicle_file:
+            for Vehicle in vehicle_file:
+                Manufacturer = Vehicle.getManufacturer()
+                Model = Vehicle.getModel()
+                id = Vehicle.getID()
+                Color = Vehicle.getColor()
+                VehicleStatus = Vehicle.getVehicleStatus()
+                Kilometers = Vehicle.getKilometers()
+                Category = Vehicle.getCategory()
+                vehicle_file.write("{},{},{},{},{},{},{}\n".format(Manufacturer,Model,id, Color, VehicleStatus, Kilometers, Category))
+            
+
 

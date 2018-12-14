@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 Halldór,1234567890,5812345,HÍ,halli@email.com
+=======
+Halldï¿½r,12345667890,halli@email.com,5812345,HR
+Bart,1234561234,1234567,heima,bart@email.com
+>>>>>>> 6c80f2aa422bc5718fcffe82ecbb765b59eb31cd

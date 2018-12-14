@@ -58,10 +58,23 @@ class MainMenu:
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
+<<<<<<< HEAD
                         self.customerConfirm()
                         self.__customer_ui.updateCustomer(
                             self.__selected_customer
                             )
+=======
+                        if self.__selected_customer == None:
+                            print("No selected customer.")
+                            self.otherCustomerOptions()
+                        #Customer selected, user asked whether to use selected
+                                               
+                        self.__choice = self.customerConfirm()
+                        while self.__choice != "y":
+                            self.otherCustomerOptions()
+                            self.__choice = self.customerConfirm()
+                        self.__customer_ui.updateCustomer(self.__selected_customer)
+>>>>>>> 6c80f2aa422bc5718fcffe82ecbb765b59eb31cd
                     elif self.__choice == "5":
                         if self.__selected_customer == None:
                             print("No selected customer.")
@@ -91,6 +104,8 @@ class MainMenu:
                         self.__vehicle_ui.addVehicle()
                     elif self.__choice == "6":
                         self.__vehicle_ui.returnVehicle()
+                    elif self.__choice == "7":
+                        self.__vehicle_ui.deleteVehicle()
                 self.__selected_vehicle = self.__vehicle_ui.getSelected()
 
     def getInput(self, prompt=""):
@@ -105,9 +120,9 @@ class MainMenu:
         print("(3) Vehicles")
 
     def otherCustomerOptions(self):
-        print("1. Register new customer(N)")
-        print("2. Find customer(F)")
-        print("3. List all customers(L)")
+        print("1. Register new customer")
+        print("2. Find customer")
+        print("3. List all customers")
         choice = self.getInput().lower()
         if choice == "1":
             self.__customer_ui.newCustomer()
