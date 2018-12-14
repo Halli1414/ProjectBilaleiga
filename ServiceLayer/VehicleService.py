@@ -10,7 +10,8 @@ class VehicleService(object):
         self.__vehicle_repo.addVehicle(Vehicle)
     
     def getVehicle(self):
-        return self.__vehicle_repo.getVehicle()
+        self.__vehicles = self.__vehicle_repo.getVehicle()
+        return self.__vehicles  
 
     def findVehicle(self, vehicle_id):
         return_vehicle = None
@@ -47,6 +48,7 @@ class VehicleService(object):
             if vehicle.getID() == vehicle_id:
                 if vehicle.getVehicleStatus() == "2":
                     vehicle.setVehicleStatus("1")
+                    self.__vehicle_repo.updateVehicleFile(self.__vehicles)
                     return "Vehicle status has been updated"
                 elif vehicle.getVehicleStatus() == "1":
                     return "Vehicle is already available"
@@ -57,6 +59,6 @@ class VehicleService(object):
             if self.__vehicles[i].getID() == selected_vehicle.getID():
                 self.__vehicles.pop(i)
                 self.__vehicle_repo.clearVehicle(self.__vehicles)
-                
+
 
 
