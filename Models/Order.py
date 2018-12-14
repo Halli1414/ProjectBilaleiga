@@ -37,6 +37,6 @@ class Order(object):
         self.__order_end = new_end_date
 
     def __str__(self):
-        return "Order ID: {} Customer: {} Vehicle: {} Order Start: {} Order end: {}".format(
+        return "{},{},{},{},{}\n".format(
             self.__id, self.__customer, self.__vehicle, self.__order_start, self.__order_end
             )

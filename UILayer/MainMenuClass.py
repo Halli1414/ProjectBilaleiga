@@ -6,7 +6,7 @@ from ServiceLayer.CustomerService import CustomerService
 from ServiceLayer.OrderService import OrderService
 from ServiceLayer.VehicleService import VehicleService
 
-#this is the ui class that handles all of the menus
+# This is the ui class that handles all of the menus
 
 class MainMenu:
     def __init__(self):
@@ -22,27 +22,31 @@ class MainMenu:
         while self.__choice.lower() != "exit":
             self.printMainMenu()
             self.__choice = self.getInput()
-            #Order menu
+            # Order menu
             if self.__choice == "1":
                 while self.__choice != "q":
                     self.__order_ui.printMenu()
                     self.__choice = self.getInput()
-                    #New order
+                    # New order
+                    # Virkar 100%
                     if self.__choice == "1":
                         self.addOrder()
-                    #Find order
+                    # Find order
+                    # Virkar 100%
                     elif self.__choice == "2":
                         self.findOrder()
-                    #All orders
+                    # All orders
                     elif self.__choice == "3":
                         self.allOrders()
-                    #Update order
+                    # Update order
+                    # Virkar 100%
                     elif self.__choice == "4":
                         self.updateOrder()
-                    #Delete order
+                    # Delete order
+                    # Virkar 100%
                     elif self.__choice == "5":
                         self.deleteOrder()
-            #Customer menu
+            # Customer menu
             elif self.__choice == "2":
                 while self.__choice != "q":
                     self.__customer_ui.printMenu()
@@ -54,17 +58,7 @@ class MainMenu:
                     elif self.__choice == "3":
                         self.__customer_ui.allCustomer()
                     elif self.__choice == "4":
-                        if self.__selected_customer == None:
-                            print("No selected customer.")
-                            self.otherCustomerOptions()
-                        #Customer selected, user asked whether to use selected
-                                               
-                        
-                        self.__choice = self.customerConfirm()
-                        while self.__choice != "y":
-                            self.otherCustomerOptions()
-                            self.__choice = self.customerConfirm()
-                        self.__customer_ui.updateCustomer(self.__selected_customer)
+                        self.__customer_ui.updateCustomer()
                     elif self.__choice == "5":
                         if self.__selected_customer == None:
                             print("No selected customer.")
@@ -119,7 +113,7 @@ class MainMenu:
         elif choice == "3":
             self.__customer_ui.allCustomer()
 
-        self.refresh_selected()
+        self.__selected_customer = self.__customer_ui.getSelected()
 
     def otherVehicleOptions(self):
         print("1. Get next avaliable")
@@ -200,11 +194,6 @@ class MainMenu:
         category = self.getInput().lower()
         self.__selected_vehicle = self.__vehicle_ui.getNextAvailable(category)
 
-    def refresh_selected(self):
-        self.__selected_customer = self.__customer_ui.getSelected()
-        self.__selected_vehicle = self.__vehicle_ui.getSelected()
-        self.__selected_order = self.__order_ui.getSelected()
-
     def addOrder(self):         
         self.customerConfirm()
         self.vehicleConfirm()
@@ -233,5 +222,6 @@ class MainMenu:
             )
 
     def deleteOrder(self):
-        self.__order_ui.deleteOrder(self.__selected_order.getID)
+        self.orderComfirm()
+        self.__order_ui.deleteOrder(self.__selected_order.getID())
         self.__selected_order = self.__order_ui.getSelected()

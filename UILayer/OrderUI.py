@@ -42,9 +42,9 @@ class OrderUI(object):
         for order in orders:
             print(order)
 
-    def deleteOrder(self, selected_order):
+    def deleteOrder(self, selected_order_id):
         # Message varaible to print out the resaults, success or not
-        message = self.__order_service.deleteOrder(selected_order)
+        message = self.__order_service.deleteOrder(selected_order_id)
         print(message)
 
     def updateOrder(self, a_order, a_customer, a_vehicle):
@@ -56,8 +56,8 @@ class OrderUI(object):
         end_date = a_order.getOrderEndDate()
 
         # Confirm whether to use dates or set new
-        start_date = self.confirmDate(start_date)
-        end_date = self.confirmDate(end_date, False)
+        start_date = self.selectDate(start_date)
+        end_date = self.selectDate(end_date, False)
 
         # Update order
         self.__order_service.updateOrder(
@@ -72,6 +72,7 @@ class OrderUI(object):
 
     # Prompt to the user to keep or change the dates
     def confirmDate(self, date, first=True):
+        print(date)
         if first == True:
             print("Use this start date?(Y/N)")
         else:
@@ -82,12 +83,11 @@ class OrderUI(object):
     # In case of date change
     def selectDate(self, date, first=True):
         new_date = date
-        choice = self.confirmDate(date, first)
+        choice = self.confirmDate(new_date, first)
         while choice != "y":
             new_date = self.pickDate()
-            choice = self.confirmDate(date, first)
-            if choice == "q":
-                break
+            choice = self.confirmDate(new_date, first)
+            
         return new_date
 
 

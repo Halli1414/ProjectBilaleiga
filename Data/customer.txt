@@ -1,1 +1,1 @@
-Dóri,0987654321,dori@email.com,1122334,HR
+Halldór,12345667890,halli@email.com,5812345,HR

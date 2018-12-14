@@ -43,15 +43,48 @@ class CustomerUI:
         for customer in customers:
             print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(customer.getName(), customer.getID(), customer.getPhone(), customer.getAddress(), customer.getEmail()))
 
-    def updateCustomer(self, a_customer):
-        name = input("Name: ")
-        phone = input("Phone number: ")
-        address = input("Address: ")
-        email = input("Email: ")
-        
-        self.__customer_service.updateCustomer(a_customer, name, phone, address,email)
+    def updateCustomer(self, selected_customer):
+        # Initialize values
+        customer_id = selected_customer.getID()
+        attr_list = []
+        attr_list[0] = selected_customer.getName()
+        attr_list[1] = selected_customer.getEmail()
+        attr_list[2] = selected_customer.getPhone()
+        attr_list[3] = selected_customer.getAddress()
+
+        for attr in attr_list:
+            self.selectNewAttr(attr)
+
+        new_name = attr_list[0]
+        new_email = attr_list[1]
+        new_phone = attr_list[2]
+        new_address = attr_list[3]
+
+        self.__customer_service.updateCustomer(
+            customer_id, new_name, new_phone, new_address, new_email
+            )
         
     def deleteCustomer(self):
        self.__customer_service.deleteCustomer(self.__selected_customer)
 
     
+
+
+    def confirmUpdatedAttr(self, customer_attr):
+        print(customer_attr)
+        print("Use this?(Y/N)")
+        
+        return self.getInput().lower()
+
+    def selectNewAttr(self, customer_attr):
+        new_attr = customer_attr
+        choice = self.confirmUpdatedAttr(new_attr)
+        while choice != "y":
+            new_attr = self.getInput("New name: ")
+            choice = self.confirmUpdatedAttr(new_attr)
+
+        return new_attr
+        
+
+    def getInput(self, prompt=""):
+        return input(prompt)
