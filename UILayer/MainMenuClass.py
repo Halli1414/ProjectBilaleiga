@@ -182,7 +182,7 @@ class MainMenu:
                 break
         return choice
 
-    def orderComfirm(self):
+    def orderConfirm(self):
         if self.__selected_order == None:
             print("No selected order.")
             self.otherOrderOptions()
@@ -193,7 +193,7 @@ class MainMenu:
         choice = self.getInput().lower()
         while choice != "y":
             self.otherOrderOptions()
-            choice = self.orderComfirm()
+            choice = self.orderConfirm()
             if choice.lower() == "q":
                 break
         self.__selected_customer = self.__selected_order.getCustomer()
@@ -224,7 +224,7 @@ class MainMenu:
         self.__order_ui.allOrders()
 
     def updateOrder(self):
-        self.orderComfirm()
+        self.orderConfirm()
         self.customerConfirm()
         self.vehicleConfirm()
 
@@ -233,6 +233,6 @@ class MainMenu:
             )
 
     def deleteOrder(self):
-        self.orderComfirm()
+        self.orderConfirm()
         self.__order_ui.deleteOrder(self.__selected_order.getID())
         self.__selected_order = self.__order_ui.getSelected()

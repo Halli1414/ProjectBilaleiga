@@ -27,8 +27,9 @@ class OrderService(object):
     def addOrder(self, customer, vehicle, start_date, end_date):
 
         order_id = self.getNextOrderID()
+        order_fee = self.calculateOrderFee(vehicle.getCategory(), start_date, end_date)
 
-        new_order = Order(order_id, customer, vehicle, start_date, end_date)
+        new_order = Order(order_id, customer, vehicle, start_date, end_date, order_fee)
         self.__order_repo.addOrder(new_order)
         self.getOrders()
         return new_order
@@ -47,8 +48,7 @@ class OrderService(object):
         return return_order
 
     def updateOrder(
-        self, order_id, customer, vehicle, start_date, end_date
-        ):
+        self, order_id, customer, vehicle, start_date, end_date):
 
         self.getOrders()
 
@@ -58,6 +58,7 @@ class OrderService(object):
                 order.setVehicle(vehicle)
                 order.setOrderStartDate(start_date)
                 order.setOrderEndDate(end_date)
+                order.setOrderFee(self.calculateOrderFee(vehicle.getCategory(), start_date, end_date))
 
                 self.__order_repo.updateOrderFile(self.__orders)
                 self.getOrders()
@@ -74,3 +75,14 @@ class OrderService(object):
                 return "Order ID: {} deleted".format(selected_order_id)
         
         return "Order ID: {} not found".format(selected_order_id)
+    
+    def calculateOrderFee(self, vehicle_category, start_date, end_date):
+        day_difference = end_date - start_date
+        if vehicle_category == 1:
+            vehicle_price = 5900
+        elif vehicle_category == 2:
+            vehicle_price = 9900
+        elif vehicle_category == 3:
+            vehicle_price = 12900
+
+        return vehicle_price * day_difference.days

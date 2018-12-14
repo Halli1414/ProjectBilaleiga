@@ -1,4 +1,4 @@
-# This is the class that handles Order menues
+# This is the class that handles Order menus
 from ServiceLayer.OrderService import OrderService
 from Models.Order import Order
 from datetime import datetime
@@ -43,7 +43,7 @@ class OrderUI(object):
             print(order)
 
     def deleteOrder(self, selected_order_id):
-        # Message varaible to print out the resaults, success or not
+        # Message variable to print out the results, success or not
         message = self.__order_service.deleteOrder(selected_order_id)
         print(message)
 
@@ -70,7 +70,7 @@ class OrderUI(object):
     def getSelected(self):
         return self.__selected_order
 
-    # Prompt to the user to keep or change the dates
+    # Prompt the user to keep or change the dates
     def confirmDate(self, date, first=True):
         print(date)
         if first == True:
@@ -96,5 +96,3 @@ class OrderUI(object):
         month = self.getInput("Pick month. (mm)")
         day = self.getInput("Pick day. (dd)")
         return datetime(int(year), int(month), int(day)).date()
-
-        

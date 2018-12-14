@@ -9,17 +9,16 @@ class OrderRepository(object):
         self.__orders = []
 
     def addOrder(self, order):
-
         self.__orders.append(order)
-
         with open("./Data/orders.txt", "a+") as order_file:
             order_id = order.getID()
             customer = order.getCustomer()
             vehicle = order.getVehicle()
             order_start_date = order.getOrderStartDate()
             order_end_date = order.getOrderEndDate()
-            order_file.write("{},{},{},{},{}\n".format(
-                order_id, customer, vehicle, order_start_date, order_end_date
+            order_fee = order.getOrderFee()
+            order_file.write("{},{},{},{},{},{}\n".format(
+                order_id, customer, vehicle, order_start_date, order_end_date, order_fee
                 ))
 
     def getOrders(self):
@@ -36,13 +35,14 @@ class OrderRepository(object):
                 vehicle = order.getVehicle()
                 order_start_date = order.getOrderStartDate()
                 order_end_date = order.getOrderEndDate()
-                str_with_orders += "{},{},{},{},{}\n".format(
-                order_id, customer, vehicle, order_start_date, order_end_date
+                order_fee = order.getOrderFee()
+                str_with_orders += "{},{},{},{},{},{}\n".format(
+                order_id, customer, vehicle, order_start_date, order_end_date, order_fee
                 )
             order_file.write(str_with_orders)
         self.refreshOrderList()
 
-    def customerToOject(self, customer_str):
+    def customerToObject(self, customer_str):
         name, customer_id, email, phone, address = customer_str.split(";")
         a_customer = Customer(name, customer_id, email, phone, address)
         return a_customer
@@ -57,10 +57,10 @@ class OrderRepository(object):
         with open("./Data/orders.txt", "r") as order_file:
             for line in order_file.readlines():
                 line = line.strip("\n")
-                order_id, customer, vehicle, order_start_date, order_end_date = line.split(",")
-                customer_obj = self.customerToOject(customer)
+                order_id, customer, vehicle, order_start_date, order_end_date, order_fee = line.split(",")
+                customer_obj = self.customerToObject(customer)
                 vehicle_obj = self.vehicleToObject(vehicle)
                 new_order = Order(
-                    order_id, customer_obj, vehicle_obj, order_start_date, order_end_date
+                    order_id, customer_obj, vehicle_obj, order_start_date, order_end_date, int(order_fee)
                 )
                 self.__orders.append(new_order)
