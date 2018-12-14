@@ -9,11 +9,12 @@ class VehicleService(object):
     def addVehicle(self, Vehicle):
         self.__vehicle_repo.addVehicle(Vehicle)
     
-    def getVehicle(self):
+    def getVehicles(self):
         self.__vehicles = self.__vehicle_repo.getVehicle()
         return self.__vehicles  
 
     def findVehicle(self, vehicle_id):
+        self.getVehicles()
         return_vehicle = None
         for vehicle in self.__vehicles:
             if vehicle.getID() == vehicle_id:
@@ -54,11 +55,11 @@ class VehicleService(object):
                     return "Vehicle is already available"
 
     def deleteVehicle(self, selected_vehicle):
-        self.getVehicle()
+        self.getVehicles()
         for i in range(0, len(self.__vehicles)):
             if self.__vehicles[i].getID() == selected_vehicle.getID():
                 self.__vehicles.pop(i)
-                self.__vehicle_repo.clearVehicle(self.__vehicles)
+                self.__vehicle_repo.updateVehicleFile(self.__vehicles)
 
 
 
