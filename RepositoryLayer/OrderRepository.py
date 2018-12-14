@@ -1,6 +1,7 @@
 from Models.Order import Order
 from Models.Customer import Customer
 from Models.Vehicle import Vehicle
+from datetime import datetime
 # This is the OrderRepository class
 
 class OrderRepository(object):
@@ -52,6 +53,11 @@ class OrderRepository(object):
         a_vehicle = Vehicle(manufacturer, model, vehicle_id, color, kilometers, vehicle_status, category,)
         return a_vehicle
 
+    def __dateToObject(self, date):
+        year, month, day = date.split("-")
+        date_obj = datetime(int(year), int(month), int(day)).date()
+        return date_obj
+
     def refreshOrderList(self):
         self.__orders = []
         with open("./Data/orders.txt", "r") as order_file:
@@ -60,7 +66,9 @@ class OrderRepository(object):
                 order_id, customer, vehicle, order_start_date, order_end_date, order_fee = line.split(",")
                 customer_obj = self.customerToObject(customer)
                 vehicle_obj = self.vehicleToObject(vehicle)
+                start_date_obj = self.__dateToObject(order_start_date)
+                end_date_obj = self.__dateToObject(order_end_date)
                 new_order = Order(
-                    order_id, customer_obj, vehicle_obj, order_start_date, order_end_date, int(order_fee)
+                    order_id, customer_obj, vehicle_obj, start_date_obj, end_date_obj, int(order_fee)
                 )
                 self.__orders.append(new_order)
