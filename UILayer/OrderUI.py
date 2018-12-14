@@ -96,14 +96,16 @@ class OrderUI(object):
         return datetime(int(year), int(month), int(day)).date()
 
     def __printHeader(self):
+        print("\n" * 100)
         print("{:<6}{:<7}{:<20}{:<15}{:<15}{:<15}{:<15}".format(
-            "No", "ID", "Customer", "Vehicle", "Start Date", "End Date", "Fee"
+            "No.", "ID", "Customer", "Vehicle", "Start Date", "End Date", "Fee"
         ))
 
     def __printOrderList(self, order_list):
         self.__printHeader()
         for i in range(0, len(order_list)):
             print("{:>4}. {}".format(i+1, self.__printOrder(order_list[i])))
+        input("Press (Enter) to continue.")
 
     def __printOrder(self, order):
         order_customer_id = order.getCustomer().getID()

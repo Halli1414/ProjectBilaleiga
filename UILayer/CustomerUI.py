@@ -89,7 +89,8 @@ class CustomerUI:
         return input(prompt)
 
     def printHeader(self):
-        print("{:<30} {:<20} {:<15} {:<30} {:<25}\n".format(
+        print("\n" * 100)
+        print("{:<30} {:<20} {:<15} {:<30} {:<25}".format(
             "Name", "ID", "Phone", "Address", "Email"
             ))
 
@@ -98,6 +99,7 @@ class CustomerUI:
         for i in range(1, len(a_list) + 1):
             customer_str = self.printCustomer(a_list[i-1])
             print("{:>3}. {}".format(i, customer_str))
+        input("Press (Enter) to continue.")
 
     def printCustomer(self, customer):
         return "{:.<30} {:.<20} {:.<15} {:.<30} {:<25}".format(

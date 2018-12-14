@@ -1,6 +1,2 @@
 Halld�r,12345667890,halli@email.com,5812345,HR
-<<<<<<< HEAD
-Bart,1234561234,1234567,heima,bart@email.comAdam,1612972679,7755202,Trollateigur 23,adamelid16@gmail.com
-=======
 Bart,1234561234,1234567,heima,bart@email.com
->>>>>>> 872888caf26610a1830b7926230a75760104e052

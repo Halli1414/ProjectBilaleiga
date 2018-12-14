@@ -98,6 +98,8 @@ class MainMenu:
                         self.__vehicle_ui.returnVehicle()
                     elif self.__choice == "7":
                         self.__vehicle_ui.deleteVehicle()
+                    elif self.__choice == "8":
+                        self.__vehicle_ui.printVehiclePrices()
                 self.__selected_vehicle = self.__vehicle_ui.getSelected()
 
     def getInput(self, prompt=""):
@@ -126,15 +128,7 @@ class MainMenu:
         self.__selected_customer = self.__customer_ui.getSelected()
 
     def otherVehicleOptions(self):
-        print("1. Get next avaliable")
-        print("2. Find specific")
-        
-        choice = self.getInput().lower()
-        if choice == "1":
-            self.__selected_vehicle = self.__vehicle_ui.getNextAvailableVehicle()
-        elif choice == "2":
-            #self.__selected_vehicle = self.__vehicle_ui.findVehicles()
-            pass
+        self.__selected_vehicle = self.__vehicle_ui.getNextAvailableVehicle()
 
     def otherOrderOptions(self):
         print("1. Make new order")

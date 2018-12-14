@@ -19,6 +19,7 @@ class VehicleUI:
         print("5.Add vehicle")
         print("6.Return vehicle")
         print("7.Delete vehicle")
+        print("8.Vehicle prices")
         
     def findVehicle(self):
         vehicle_id = input("ID: ")
@@ -62,11 +63,8 @@ class VehicleUI:
         if self.vehicleConfirm() != "q":
             self.__vehicle_service.deleteVehicle(self.__selected_vehicle)
         
-        
-
     def getInput(self):
         return input()
-    
     
     def vehicleConfirm(self):
         if self.__selected_vehicle == None:
@@ -90,7 +88,7 @@ class VehicleUI:
         
         choice = self.getInput().lower()
         if choice == "1":
-            self.getNextAvailableVehicle()
+            return self.getNextAvailableVehicle()
         elif choice == "2":
             self.findVehicle()
         elif choice == "3":
@@ -105,20 +103,22 @@ class VehicleUI:
         return self.__selected_vehicle
 
     def printVehicleHeader(self):
-        print("{:.<10}{:.<20}{:.<20}{:.<10}{:.<15}{:.<5}{:<5}".format(
-            "ID", "Manufacturer", "Model", "Color", "Kilometers", "Status", "Category"
+        print("\n" * 100)
+        print("{:<5}{:<10}{:<20}{:<20}{:<10}{:<15}{:<15}{:<15}".format(
+            "No.", "ID", "Manufacturer", "Model", "Color", "Kilometers", "Status", "Category"
             ))
 
     def printVehicleList(self, vehicle_list):
         self.printVehicleHeader()
         for i in range(0, len(vehicle_list)):
             print("{:>3}. {}".format(i+1, self.printVehicle(vehicle_list[i])))
+        input("Press (Enter) to continue.")
     
     def printVehicle(self, vehicle):
 
         status = self.parseStatus(vehicle.getVehicleStatus())
         category = self.parseCategory(vehicle.getCategory())
-        return "{:.<10}{:.<20}{:.<20}{:.<10}{:.<15}{:.<5}{:<5}".format(
+        return "{:.<10}{:.<20}{:.<20}{:.<10}{:.<15}{:.<15}{:<15}".format(
             vehicle.getID(), vehicle.getManufacturer(), vehicle.getModel(), vehicle.getColor(), vehicle.getKilometers(), status, category
             )
 
@@ -130,6 +130,10 @@ class VehicleUI:
             resaults_list.append(resaults)
         self.printVehicleList(resaults_list)
 
+    def printVehiclePrices(self):
+        print("\n" * 100)
+        print("{:<10}{:<10}\n{:<10}{:<10}\n{:<10}{:<10}\n".format("Small:", "5.900kr", "Medium:", "9.900kr", "Large:", "12.900kr"))
+
     def parseCategory(self, category):
         if category == "1":
             return "Small"
@@ -140,6 +144,6 @@ class VehicleUI:
 
     def parseStatus(self, status):
         if status == "1":
-            return "Avaliable"
+            return "Available"
         elif status == "2":
-            return "Unavailble"
+            return "Unavailable"
