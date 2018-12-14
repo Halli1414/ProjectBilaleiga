@@ -21,11 +21,11 @@ class CustomerUI:
     def newCustomer(self):
         name = input("Name: ")
         customer_id = input("ID: ")
-        email = input("Email: ")
         phone = input("Phone number: ")
         address = input("Address: ")
+        email = input("Email: ")
 
-        new_customer = Customer(name, customer_id, email, phone, address)
+        new_customer = Customer(name, customer_id, phone, address, email)
         self.__customer_service.addCustomer(new_customer)
         self.__selected_customer = new_customer
     
