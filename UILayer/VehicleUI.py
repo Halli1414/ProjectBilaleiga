@@ -82,7 +82,7 @@ class VehicleUI:
         return choice
 
     def otherVehicleOptions(self):
-        print("1. Get next avaliable")
+        print("1. Get next available")
         print("2. Find specific")
         print("3. List all vehicles")
         
